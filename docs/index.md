@@ -7,9 +7,9 @@
 
 Request Types:
 1. connection 01
-  1. connect 00
+  - connect 00
 1. rooms 02
-  1. create 00
+  - create 00
 
 request
 > request type (2 byte) counter (ushort) data length (uint) data (data length bytes) crc (2 byte)
@@ -38,6 +38,7 @@ sample (01 00 00 00 00 00 04 00 00 00 AA BB CC DD C5 96)
 ```
 02 00 01 00 00 00 00 00 00 00 60 06
 ```
-repsonse codes 
-created: 00 00
-duplicate room name 01 00
+repsonse codes
+
+- created: 00 00
+- duplicate room name 01 00
