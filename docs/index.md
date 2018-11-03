@@ -1,7 +1,7 @@
-##Home automation with Raspberry Pi
+## Home automation with Raspberry Pi
 
 
-#Protocol
+# Protocol
 
 Using little endian
 
