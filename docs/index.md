@@ -5,6 +5,7 @@
 * Using little endian
 * Using unicode for string
 * CRC checksum for all samples AF FE
+* Protocol version for all commands 00
 
 Request Types:
 1. connection 01
@@ -13,36 +14,36 @@ Request Types:
   - create 00
 
 request
-> request type (2 byte) counter (ushort) data length (uint) data (data length bytes) crc (2 byte)
+> protocol version (1 byte) request type (2 byte) counter (ushort) data length (uint) data (data length bytes) crc (2 byte)
 ```
-sample (01 00 00 00 00 00 00 00 AF FE)
+sample (00 01 00 00 00 00 00 00 00 AF FE)
 ```
 response
-> request type (2 byte) counter (ushort) response code (2 byte) data length (uint) data (data length bytes) crc (2 byte)
+> protocol version (1 byte) request type (2 byte) counter (ushort) response code (2 byte) data length (uint) data (data length bytes) crc (2 byte)
 ```
-sample (01 00 00 00 00 00 04 00 00 00 AA BB CC DD AF FE)
+sample (00 01 00 00 00 00 00 04 00 00 00 AA BB CC DD AF FE)
 ```
 
 ### Connection
 #### connect
 > request
 ```
-01 00 00 00 00 00 00 00 AF FE
+00 01 00 00 00 00 00 00 00 AF FE
 ```
 > response
 ```
-01 00 00 00 04 00 00 00 | AA BB CC DD | AF FE
+00 01 00 00 00 04 00 00 00 | AA BB CC DD | AF FE
 ```
 
 ### Rooms
 #### create room
 > request (data: living room)
 ```
-02 00 01 00 16 00 00 00 | 6C 00 69 00 76 00 69 00 6E 00 67 00 20 00 72 00 6F 00 6F 00 6D 00 | AF FE
+00 02 00 01 00 16 00 00 00 | 6C 00 69 00 76 00 69 00 6E 00 67 00 20 00 72 00 6F 00 6F 00 6D 00 | AF FE
 ```
 > respone (data: unique room identifier if response code is 00 00)
 ```
-02 00 01 00 00 00 04 00 00 00 | AA BB CC DD | AF FE
+00 02 00 01 00 00 00 04 00 00 00 | AA BB CC DD | AF FE
 ```
 > repsonse codes
 
