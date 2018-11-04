@@ -4,6 +4,7 @@
 
 * Using little endian
 * Using unicode for string
+* CRC checksum for all samples AF FE
 
 Request Types:
 1. connection 01
@@ -14,31 +15,36 @@ Request Types:
 request
 > request type (2 byte) counter (ushort) data length (uint) data (data length bytes) crc (2 byte)
 ```
-sample (01 00 00 00 00 00 00 00 C1 CC)
+sample (01 00 00 00 00 00 00 00 AF FE)
 ```
 response
 > request type (2 byte) counter (ushort) response code (2 byte) data length (uint) data (data length bytes) crc (2 byte)
 ```
-sample (01 00 00 00 00 00 04 00 00 00 AA BB CC DD C5 96)
+sample (01 00 00 00 00 00 04 00 00 00 AA BB CC DD AF FE)
 ```
 
-* connect request
+### Connection
+#### connect
+> request
 ```
-01 00 00 00 00 00 00 00 C1 CC
+01 00 00 00 00 00 00 00 AF FE
 ```
-* connect response
+> response
 ```
-01 00 00 00 04 00 00 00 | AA BB CC DD | 38 94
+01 00 00 00 04 00 00 00 | AA BB CC DD | AF FE
 ```
-* create room request (living room)
-```
-02 00 01 00 16 00 00 00 | 6C 00 69 00 76 00 69 00 6E 00 67 00 20 00 72 00 6F 00 6F 00 6D 00 | 4E CE
-```
-* create room respone
-```
-02 00 01 00 00 00 00 00 00 00 60 06
-```
-repsonse codes
 
-- created: 00 00
+### Rooms
+#### create room
+> request (data: living room)
+```
+02 00 01 00 16 00 00 00 | 6C 00 69 00 76 00 69 00 6E 00 67 00 20 00 72 00 6F 00 6F 00 6D 00 | AF FE
+```
+> respone (data: unique room identifier if response code is 00 00)
+```
+02 00 01 00 00 00 04 00 00 00 | AA BB CC DD | AF FE
+```
+> repsonse codes
+
+- created: 00 00 
 - duplicate room name 01 00
