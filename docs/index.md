@@ -150,6 +150,7 @@ sample (00 02 01 00 00 01 00 CC CC CC CC 00 00 16 00 00 00 | AA BB CC DD 11 00 2
 
 - success: 00 00 
 - duplicate room name 01 00
+- empty name is not allowed 02 00
 
 #### get all rooms
 
@@ -187,3 +188,43 @@ sample (00 02 01 00 00 01 00 CC CC CC CC 00 00 16 00 00 00 | AA BB CC DD 11 00 2
 
 - success: 00 00 
 - unknown room identifier: 01 00 
+
+#### rename room
+
+> request (data: unique room identifier, living room)
+
+```
+00 02 03 00 00 01 00 CC CC CC CC 1A 00 00 00 | AA BB CC DD 6C 00 69 00 76 00 69 00 6E 00 67 00 20 00 72 00 6F 00 6F 00 6D 00 | AF FE
+```
+
+> respone
+
+```
+00 02 00 00 00 01 00 CC CC CC CC 00 00 00 00 00 00 AF FE
+```
+
+> repsonse codes
+
+- success: 00 00 
+- unknown room identifier 01 00
+- duplicate room name 02 00
+- empty name is not allowed 03 00
+
+#### delete room
+
+> request (data: unique room identifier)
+
+```
+00 02 03 00 00 01 00 CC CC CC CC 04 00 00 00 | AA BB CC DD | AF FE
+```
+
+> respone
+
+```
+00 02 00 00 00 01 00 CC CC CC CC 00 00 00 00 00 00 AF FE
+```
+
+> repsonse codes
+
+- success: 00 00
+- unknown room identifier 01 00
