@@ -25,6 +25,7 @@
 1. transaction required FF 03
 1. unknown command FF 04
 1. corrupt data FF 05
+1. not supported protocol version FF 06
 
 #### Commands (no connect required)
 
