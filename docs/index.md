@@ -23,6 +23,7 @@
 1. wrong crc FF 01
 1. not connected FF 02
 1. transaction required FF 03
+1. unknown command FF 04
 
 #### Commands (no connect required)
 
