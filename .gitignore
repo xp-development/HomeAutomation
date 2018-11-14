@@ -2,4 +2,8 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/Source/.vs/HomeAutomation
+/Source/.vs/**
+/Source/**/bin/Debug/**
+/Source/**/obj/**
+/Source/packages
+/Source/HomeAutomation.sln.DotSettings.user
