@@ -82,13 +82,13 @@ sample (00 02 01 00 00 01 00 CC CC CC CC 00 00 16 00 00 00 | AA BB CC DD 11 00 2
 > request
 
 ```
-00 01 01 00 00 01 00 00 00 00 00 AF FE
+00 01 01 00 00 01 00 CC CC CC CC 00 00 00 00 AF FE
 ```
 
 > response (data: connection identifier)
 
 ```
-00 01 01 00 00 01 00 00 00 00 00 AF FE
+00 01 01 00 00 01 00 CC CC CC CC 00 00 00 00 AF FE
 ```
 
 > repsonse codes
@@ -101,13 +101,13 @@ sample (00 02 01 00 00 01 00 CC CC CC CC 00 00 16 00 00 00 | AA BB CC DD 11 00 2
 > request
 
 ```
-00 01 01 01 00 01 00 00 00 00 00 AF FE
+00 01 01 01 00 01 00 CC CC CC CC 00 00 00 00 AF FE
 ```
 
 > response (data: connection identifier)
 
 ```
-00 01 01 01 00 01 00 00 00 00 00 AF FE
+00 01 01 01 00 01 00 CC CC CC CC  00 00 00 00 AF FE
 ```
 
 > repsonse codes
@@ -120,13 +120,13 @@ sample (00 02 01 00 00 01 00 CC CC CC CC 00 00 16 00 00 00 | AA BB CC DD 11 00 2
 > request
 
 ```
-00 01 01 02 00 01 00 00 00 00 00 AF FE
+00 01 01 02 00 01 00 CC CC CC CC 00 00 00 00 AF FE
 ```
 
 > response (data: connection identifier)
 
 ```
-00 01 01 02 00 01 00 00 00 00 00 AF FE
+00 01 01 02 00 01 00 CC CC CC CC 00 00 00 00 AF FE
 ```
 
 > repsonse codes
