@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace HomeAutomation.Protocols.App.v0.ResponseParsers
 {
-  public class ResponseParser : IV0ResponseParser
+  public class ResponseParser : IResponseParser
   {
     private readonly IResponseDataParserFactory _responseDataParserFactory;
 
@@ -14,7 +14,7 @@ namespace HomeAutomation.Protocols.App.v0.ResponseParsers
 
     public IResponse Parse(byte[] dataBytes)
     {
-      if(dataBytes == null || dataBytes.Length < 15)
+      if(dataBytes == null || dataBytes.Length < 13)
         return new CommonErrorResponse(dataBytes, 0xFF, 0x05);
 
       var protocolVersion = dataBytes[0];
@@ -35,11 +35,11 @@ namespace HomeAutomation.Protocols.App.v0.ResponseParsers
       var responseCode0 = dataBytes[7];
       var responseCode1 = dataBytes[8];
 
-      var dataLength = BitConverter.ToUInt32(dataBytes, 9);
-      var data = dataBytes.Skip(13).Take((int) dataLength);
+      var dataLength = BitConverter.ToUInt16(dataBytes, 9);
+      var data = dataBytes.Skip(11).Take(dataLength);
 
-      var crc0 = dataBytes[13 + dataLength];
-      var crc1 = dataBytes[14 + dataLength];
+      var crc0 = dataBytes[11 + dataLength];
+      var crc1 = dataBytes[12 + dataLength];
 
       var computeChecksum = Crc16.ComputeChecksum(dataBytes.Take(dataBytes.Length - 2));
       if(crc0 != computeChecksum[0] || crc1 != computeChecksum[1])
