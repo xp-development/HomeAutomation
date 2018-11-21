@@ -11,9 +11,9 @@ namespace HomeAutomation.Protocols.App.UnitTests._v0._ResponseParsers._ConnectRe
     {
       var parser = new ConnectResponseDataParser();
 
-      var response = parser.Parse(0x00, 0x0001, 0x00, 0x00, new byte[0]);
+      var response = parser.Parse(0x00, 0x0001, 0x00, 0x00, new byte[] { 0x0A, 0x00, 0x00, 0x00 });
 
-      response.Identifier.Should().BeGreaterOrEqualTo(1);
+      response.Identifier.Should().Be(10);
     }
 
     [Fact]
