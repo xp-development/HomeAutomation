@@ -1,11 +1,11 @@
 ﻿using System;
 using FluentAssertions;
 using HomeAutomation.Protocols.App.v0;
-using HomeAutomation.Protocols.App.v0.RequestParser;
+using HomeAutomation.Protocols.App.v0.RequestParsers;
 using Moq;
 using Xunit;
 
-namespace HomeAutomation.Protocols.App.UnitTests._v0._RequestParser
+namespace HomeAutomation.Protocols.App.UnitTests._v0._RequestParsers._RequestParser
 {
   public class Parse
   {

@@ -1,4 +1,4 @@
-﻿namespace HomeAutomation.Protocols.App.v0.RequestParser
+﻿namespace HomeAutomation.Protocols.App.v0.RequestParsers
 {
   public interface IRequestDataParserFactory
   {

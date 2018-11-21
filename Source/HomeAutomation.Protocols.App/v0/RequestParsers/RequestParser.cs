@@ -2,7 +2,7 @@
 using System.Linq;
 using HomeAutomation.Protocols.App.v0.RequestBuilders;
 
-namespace HomeAutomation.Protocols.App.v0.RequestParser
+namespace HomeAutomation.Protocols.App.v0.RequestParsers
 {
   public class RequestParser
   {
