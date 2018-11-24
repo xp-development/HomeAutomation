@@ -19,7 +19,7 @@ namespace HomeAutomation.Protocols.App.v0.RequestBuilders
 
     protected abstract byte[] Data { get; }
 
-    public IEnumerable<byte> Build()
+    public byte[] Build()
     {
       var build = new List<byte>
       {
@@ -37,14 +37,12 @@ namespace HomeAutomation.Protocols.App.v0.RequestBuilders
       var dataLength = BitConverter.GetBytes(Data.Length);
       build.Add(dataLength[0]);
       build.Add(dataLength[1]);
-      build.Add(dataLength[2]);
-      build.Add(dataLength[3]);
       build.AddRange(Data);
 
       var checksum = Crc16.ComputeChecksum(build);
       build.Add(checksum[0]);
       build.Add(checksum[1]);
-      return build;
+      return build.ToArray();
     }
   }
 }

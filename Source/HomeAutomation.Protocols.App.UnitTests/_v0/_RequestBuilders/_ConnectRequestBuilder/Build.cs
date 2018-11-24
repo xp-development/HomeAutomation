@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using FluentAssertions;
+﻿using FluentAssertions;
 using HomeAutomation.Protocols.App.v0.RequestBuilders;
 using Moq;
 using Xunit;
@@ -15,7 +14,7 @@ namespace HomeAutomation.Protocols.App.UnitTests._v0._RequestBuilders._ConnectRe
       counterMock.Setup(x => x.GetNext()).Returns(new byte[] {0x06, 0x07});
       var builder = new ConnectRequestBuilder(counterMock.Object);
 
-      var bytes = builder.Build().ToArray();
+      var bytes = builder.Build();
 
       bytes[0].Should().Be(0x00, "protocol version");
       bytes[1].Should().Be(0x01, "request type 0");
@@ -26,10 +25,8 @@ namespace HomeAutomation.Protocols.App.UnitTests._v0._RequestBuilders._ConnectRe
       bytes[6].Should().Be(0x07, "counter");
       bytes[7].Should().Be(0x00, "data length");
       bytes[8].Should().Be(0x00, "data length");
-      bytes[9].Should().Be(0x00, "data length");
-      bytes[10].Should().Be(0x00, "data length");
-      bytes[11].Should().Be(0xE4, "crc");
-      bytes[12].Should().Be(0x63, "crc");
+      bytes[9].Should().Be(0x70, "crc");
+      bytes[10].Should().Be(0x85, "crc");
     }
   }
 }
