@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace HomeAutomation.Protocols.App.v0.RequestBuilders
 {
-  public abstract class BuilderBase
+  public abstract class RequestBuilderBase
   {
     private readonly ICounter _counter;
 
-    protected BuilderBase(ICounter counter)
+    protected RequestBuilderBase(ICounter counter)
     {
       _counter = counter;
     }

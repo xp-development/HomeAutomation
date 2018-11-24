@@ -4,4 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="HomeAutomation.Protocols.App.csproj.DotSettings" />
+  </ItemGroup>
+
 </Project>

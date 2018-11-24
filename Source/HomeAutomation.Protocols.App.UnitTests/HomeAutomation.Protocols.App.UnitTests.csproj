@@ -89,7 +89,9 @@
       <Name>HomeAutomation.Protocols.App</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="_v0\_ResponseBuilders\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

@@ -1,6 +1,6 @@
 ﻿namespace HomeAutomation.Protocols.App.v0.RequestBuilders
 {
-  public class ConnectRequestBuilder : BuilderBase
+  public class ConnectRequestBuilder : RequestBuilderBase
   {
     public ConnectRequestBuilder(ICounter counter)
       : base(counter)
