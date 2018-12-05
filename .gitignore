@@ -7,3 +7,4 @@
 /Source/**/obj/**
 /Source/packages
 /Source/HomeAutomation.sln.DotSettings.user
+/Source/HomeAutomation.Server/bin

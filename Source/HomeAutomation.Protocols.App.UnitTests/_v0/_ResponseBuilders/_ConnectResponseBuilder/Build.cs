@@ -1,8 +1,6 @@
-﻿using System.Linq;
-using FluentAssertions;
+﻿using FluentAssertions;
 using HomeAutomation.Protocols.App.v0.RequestParsers;
 using HomeAutomation.Protocols.App.v0.ResponseBuilders;
-using HomeAutomation.Protocols.App.v0.ResponseParsers;
 using Xunit;
 
 namespace HomeAutomation.Protocols.App.UnitTests._v0._ResponseBuilders._ConnectResponseBuilder
