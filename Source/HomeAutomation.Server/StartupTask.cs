@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Reflection;
 using Windows.ApplicationModel.Background;
-using NLog;
+using MetroLog;
 
 namespace HomeAutomation.Server
 {
   public sealed class StartupTask : IBackgroundTask
   {
-    private static readonly ILogger Log = LogManager.GetCurrentClassLogger();
     private BackgroundTaskDeferral _deferral;
+    private static readonly ILogger Log = LogManagerFactory.DefaultLogManager.GetLogger<StartupTask>();
 
     public async void Run(IBackgroundTaskInstance taskInstance)
     {

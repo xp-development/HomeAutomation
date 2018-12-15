@@ -4,14 +4,14 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Networking.Sockets;
 using Grace.DependencyInjection;
-using NLog;
+using MetroLog;
 
 namespace HomeAutomation.Server
 {
   public sealed class Bootstrapper
   {
-    private static readonly ILogger _log = LogManager.GetCurrentClassLogger();
     private DependencyInjectionContainer _container;
+    private static readonly ILogger Log = LogManagerFactory.DefaultLogManager.GetLogger<Bootstrapper>();
 
     public IAsyncOperation<object> RunAsync()
     {
@@ -22,18 +22,18 @@ namespace HomeAutomation.Server
 
     private static DependencyInjectionContainer CreateContainer()
     {
-      _log.Debug("Create container.");
+      Log.Debug("Create container.");
       return new DependencyInjectionContainer();
     }
 
     private void ConfigureContainer()
     {
-      _log.Debug("Configure container.");
+      Log.Debug("Configure container.");
     }
 
     private IAsyncOperation<object> StartServerAsync()
     {
-      _log.Debug("Start server async.");
+      Log.Debug("Start server async.");
       return Task.Run<object>(async () =>
       {
         try
@@ -44,7 +44,7 @@ namespace HomeAutomation.Server
         }
         catch (Exception ex)
         {
-          _log.Error(ex, "Cannot initialize StreamSocketListener.");
+          Log.Error("Cannot initialize StreamSocketListener.", ex);
         }
 
         return null;
@@ -53,14 +53,14 @@ namespace HomeAutomation.Server
 
     private void ConnectionReceived(StreamSocketListener sender, StreamSocketListenerConnectionReceivedEventArgs args)
     {
-      _log.Info("Receive connection.");
+      Log.Info("Receive connection.");
       byte[] dataBytes;
       using (var reader = new BinaryReader(args.Socket.InputStream.AsStreamForRead()))
       {
         dataBytes = reader.ReadBytes(int.MaxValue);
       }
 
-      _log.Debug($"Received data {BitConverter.ToString(dataBytes)}.");
+      Log.Debug($"Received data {BitConverter.ToString(dataBytes)}.");
 
       using (var outputStream = args.Socket.OutputStream.AsStreamForWrite())
       {
