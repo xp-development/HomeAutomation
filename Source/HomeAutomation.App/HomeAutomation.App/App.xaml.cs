@@ -9,8 +9,8 @@ namespace HomeAutomation.App
     public App()
     {
       InitializeComponent();
-
-      MainPage = new MainPage();
+      var bootstrapper = new Bootstrapper();
+      MainPage = bootstrapper.Run();
     }
 
     protected override void OnStart()

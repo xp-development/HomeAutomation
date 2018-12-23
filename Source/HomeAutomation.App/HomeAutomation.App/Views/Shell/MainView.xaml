@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:shell="clr-namespace:HomeAutomation.App.Views.Shell;assembly=HomeAutomation.App"
+                  xmlns:mvvm="clr-namespace:HomeAutomation.App.Mvvm;assembly=HomeAutomation.App"
+                  x:Class="HomeAutomation.App.Views.Shell.MainView"
+                  Title="HomeAutomation"
+                  mvvm:ViewModelLocator.ViewModelType="{x:Type shell:MainViewModel}">
+
+    <MasterDetailPage.Master>
+        <shell:NavigationView x:Name="NavigationView" />
+    </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <ContentPage>
+                    <ContentPage.Content>
+                        <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                            HomeAutomation
+                        </Label>
+                    </ContentPage.Content>
+                </ContentPage>
+            </x:Arguments>
+        </NavigationPage>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

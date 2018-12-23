@@ -1,0 +1,26 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:shell="clr-namespace:HomeAutomation.App.Views.Shell;assembly=HomeAutomation.App"
+             xmlns:home="clr-namespace:HomeAutomation.App.Views.Home;assembly=HomeAutomation.App"
+             xmlns:rooms="clr-namespace:HomeAutomation.App.Views.Rooms;assembly=HomeAutomation.App"
+             x:Class="HomeAutomation.App.Views.Shell.NavigationView" Title="HomeAutomation.App">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="ListView">
+                <ListView.ItemsSource>
+                    <x:Array Type="{x:Type shell:NavigationItem}">
+                        <shell:NavigationItem Title="Home" TargetType="{x:Type home:HomePage}" />
+                        <shell:NavigationItem Title="Rooms" TargetType="{x:Type rooms:RoomOverviewPage}" />
+                    </x:Array>
+                </ListView.ItemsSource>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Text="{Binding Title}" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
