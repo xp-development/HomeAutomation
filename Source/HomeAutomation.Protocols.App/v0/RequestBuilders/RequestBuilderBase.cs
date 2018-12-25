@@ -21,6 +21,11 @@ namespace HomeAutomation.Protocols.App.v0.RequestBuilders
 
     public byte[] Build()
     {
+      return OnBuild().ToArray();
+    }
+
+    protected virtual List<byte> OnBuild()
+    {
       var build = new List<byte>
       {
         0x00, //protocol version
@@ -42,7 +47,7 @@ namespace HomeAutomation.Protocols.App.v0.RequestBuilders
       var checksum = Crc16.ComputeChecksum(build);
       build.Add(checksum[0]);
       build.Add(checksum[1]);
-      return build.ToArray();
+      return build;
     }
   }
 }

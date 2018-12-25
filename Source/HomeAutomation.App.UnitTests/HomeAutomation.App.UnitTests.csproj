@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{05342D09-9335-4A88-9C99-2618BFF34CB7}</ProjectGuid>
+    <ProjectGuid>{A7A2A230-D8D7-46CC-88F2-E261E5A82573}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HomeAutomation.Protocols.App.UnitTests</RootNamespace>
-    <AssemblyName>HomeAutomation.Protocols.App.UnitTests</AssemblyName>
+    <RootNamespace>HomeAutomation.App.UnitTests</RootNamespace>
+    <AssemblyName>HomeAutomation.App.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -34,26 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Castle.Core.4.3.1\lib\net45\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentAssertions, Version=5.5.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentAssertions.5.5.0\lib\net45\FluentAssertions.dll</HintPath>
-    </Reference>
-    <Reference Include="Moq, Version=4.10.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\packages\Moq.4.10.0\lib\net45\Moq.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
-      <Private>True</Private>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -75,28 +57,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="_v0\_RequestBuilders\_ConnectRequestBuilder\Build.cs" />
-    <Compile Include="_v0\_RequestBuilders\_Rooms\_GetAllRoomsRequestBuilder\Build.cs" />
-    <Compile Include="_v0\_RequestParsers\_ConnectRequestDataParser\Parse.cs" />
-    <Compile Include="_v0\_RequestParsers\_RequestParser\Parse.cs" />
-    <Compile Include="_v0\_ResponseBuilders\_ConnectResponseBuilder\Build.cs" />
-    <Compile Include="_v0\_ResponseParsers\_ConnectResponseDataParser\Parse.cs" />
-    <Compile Include="_v0\_ResponseParsers\_ResponseDataParserFactory\ResponseDataParserForUnitTest.cs" />
-    <Compile Include="_v0\_ResponseParsers\_ResponseDataParserFactory\TryCreate.cs" />
-    <Compile Include="_v0\_ResponseParsers\_ResponseParser\Parse.cs" />
+    <Compile Include="_Communication\_Communicator\Send.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\HomeAutomation.Protocols.App\HomeAutomation.Protocols.App.csproj">
-      <Project>{b5a2adfc-39ba-43ff-ac17-e64944ac3281}</Project>
-      <Name>HomeAutomation.Protocols.App</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HomeAutomation.App\HomeAutomation.App\HomeAutomation.App.csproj">
+      <Project>{14cdbc40-eab9-46fa-88d7-d307bc896e42}</Project>
+      <Name>HomeAutomation.App</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

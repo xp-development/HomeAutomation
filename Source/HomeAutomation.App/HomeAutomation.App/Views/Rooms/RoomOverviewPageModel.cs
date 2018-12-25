@@ -17,6 +17,14 @@ namespace HomeAutomation.App.Views.Rooms
 
     protected override Task OnLoadedAsync(object parameter)
     {
+//      var tcpClient = new TcpClient();
+//
+//      var stream = tcpClient.GetStream();
+//
+//      stream.Write(data, 0, data.Length);
+//      Int32 bytes = stream.Read(data, 0, data.Length);
+//      responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+
       Rooms.Add(new RoomViewModel(1, "Living room"));
       Rooms.Add(new RoomViewModel(2, "Kitchen"));
 

@@ -15,6 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\HomeAutomation.Protocols.App\HomeAutomation.Protocols.App.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Views\Shell\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
