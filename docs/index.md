@@ -45,13 +45,13 @@ sample (00 01 00 00 00 00 00 00 00 04 00 AA BB CC DD AF FE)
 #### Commands (connect required)
 
 request
-> protocol version (1 byte) request type (4 byte) counter (ushort) connection identifier (ushort) data length (ushort) data (data length bytes) crc (2 byte)
+> protocol version (1 byte) request type (4 byte) counter (ushort) connection identifier (4 byte) data length (ushort) data (data length bytes) crc (2 byte)
 
 ```
 sample (00 02 01 00 00 01 00 CC CC CC CC 00 00 AF FE)
 ```
 response
-> protocol version (1 byte) request type (4 byte) counter (ushort) connection identifier (ushort) response code (2 byte) data length (ushort) data (data length bytes) crc (2 byte)
+> protocol version (1 byte) request type (4 byte) counter (ushort) connection identifier (4 byte) response code (2 byte) data length (ushort) data (data length bytes) crc (2 byte)
 
 ```
 sample (00 02 01 00 00 01 00 CC CC CC CC 00 00 16 00 | AA BB CC DD 11 00 22 33 44 55 66 77 99 88 77 66 | AF FE)
