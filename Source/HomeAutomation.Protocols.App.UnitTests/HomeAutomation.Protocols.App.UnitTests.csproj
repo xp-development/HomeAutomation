@@ -84,6 +84,7 @@
     <Compile Include="_v0\_ResponseParsers\_ResponseDataParserFactory\ResponseDataParserForUnitTest.cs" />
     <Compile Include="_v0\_ResponseParsers\_ResponseDataParserFactory\TryCreate.cs" />
     <Compile Include="_v0\_ResponseParsers\_ResponseParser\Parse.cs" />
+    <Compile Include="_v0\_ResponseParsers\_Rooms\_GetAllRoomsResponseDataParser\Parse.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HomeAutomation.Protocols.App\HomeAutomation.Protocols.App.csproj">
