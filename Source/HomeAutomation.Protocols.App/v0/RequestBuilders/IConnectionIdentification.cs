@@ -1,7 +1,7 @@
 ﻿namespace HomeAutomation.Protocols.App.v0.RequestBuilders
 {
-  public class IConnectionIdentification
+  public interface IConnectionIdentification
   {
-    public byte[] Current { get; }
+    byte[] Current { get; }
   }
 }

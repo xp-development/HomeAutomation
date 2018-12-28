@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="_v0\_RequestBuilders\_ConnectRequestBuilder\Build.cs" />
+    <Compile Include="_v0\_RequestBuilders\_Rooms\_GetRoomDescriptionRequestBuilder\Build.cs" />
     <Compile Include="_v0\_RequestBuilders\_Rooms\_GetAllRoomsRequestBuilder\Build.cs" />
     <Compile Include="_v0\_RequestParsers\_ConnectRequestDataParser\Parse.cs" />
     <Compile Include="_v0\_RequestParsers\_RequestParser\Parse.cs" />
@@ -97,6 +98,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -11,7 +11,5 @@
     protected override byte RequestType1 => 0x00;
     protected override byte RequestType2 => 0x00;
     protected override byte RequestType3 => 0x00;
-
-    protected override byte[] Data => new byte[0];
   }
 }

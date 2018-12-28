@@ -2,6 +2,6 @@
 {
   public interface IRequestBuilder
   {
-    byte[] Build();
+    byte[] Build(params byte[] dataBytes);
   }
 }

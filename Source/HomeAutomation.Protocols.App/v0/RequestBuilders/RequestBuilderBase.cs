@@ -6,6 +6,7 @@ namespace HomeAutomation.Protocols.App.v0.RequestBuilders
   public abstract class RequestBuilderBase
   {
     private readonly ICounter _counter;
+    private byte[] _dataBytes;
 
     protected RequestBuilderBase(ICounter counter)
     {
@@ -17,10 +18,11 @@ namespace HomeAutomation.Protocols.App.v0.RequestBuilders
     protected abstract byte RequestType2 { get; }
     protected abstract byte RequestType3 { get; }
 
-    protected abstract byte[] Data { get; }
+    public byte[] Data { get; private set; }
 
-    public byte[] Build()
+    public byte[] Build(params byte[] dataBytes)
     {
+      Data = dataBytes ?? new byte[0];
       return OnBuild().ToArray();
     }
 
