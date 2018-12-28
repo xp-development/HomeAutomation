@@ -6,13 +6,6 @@ namespace HomeAutomation.App.Mvvm
 {
   public abstract class ViewModelBase : NotifyPropertyChangedBase, IViewLoaded, IViewUnloaded
   {
-    protected readonly IEventAggregator EventAggregator;
-
-    protected ViewModelBase(IEventAggregator eventAggregator)
-    {
-      EventAggregator = eventAggregator;
-    }
-
     public override event PropertyChangedEventHandler PropertyChanged;
 
     public Task LoadedAsync(object parameter)

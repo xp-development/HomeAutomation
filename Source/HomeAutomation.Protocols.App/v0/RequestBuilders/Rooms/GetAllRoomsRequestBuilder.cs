@@ -1,8 +1,8 @@
 ﻿namespace HomeAutomation.Protocols.App.v0.RequestBuilders.Rooms
 {
-  public class GetAllRoomsRequestBuilder : RequestWithConnectBuilderBase
+  public class GetAllRoomsRequestBuilder : RequestWithConnectBuilderBase, IGetAllRoomsRequestBuilder
   {
-    public GetAllRoomsRequestBuilder(ICounter counter, byte[] connectionIdentifier)
+    public GetAllRoomsRequestBuilder(ICounter counter, IConnectionIdentification connectionIdentifier)
       : base(counter, connectionIdentifier)
     {}
 

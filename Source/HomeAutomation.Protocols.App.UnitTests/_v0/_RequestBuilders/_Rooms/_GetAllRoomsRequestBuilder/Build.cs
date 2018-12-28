@@ -13,7 +13,9 @@ namespace HomeAutomation.Protocols.App.UnitTests._v0._RequestBuilders._Rooms._Ge
     {
       var counterMock = new Mock<ICounter>();
       counterMock.Setup(x => x.GetNext()).Returns(new byte[] {0x06, 0x07});
-      var builder = new GetAllRoomsRequestBuilder(counterMock.Object, new byte[] { 0xCC, 0xCC, 0xCC, 0xCC });
+      var connectionIdentificationMock = new Mock<IConnectionIdentification>();
+      connectionIdentificationMock.Setup(x => x.Current).Returns(new byte[] { 0xCC, 0xCC, 0xCC, 0xCC });
+      var builder = new GetAllRoomsRequestBuilder(counterMock.Object, connectionIdentificationMock.Object);
 
       var bytes = builder.Build();
 

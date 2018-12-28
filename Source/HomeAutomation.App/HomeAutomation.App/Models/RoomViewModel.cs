@@ -7,10 +7,9 @@ namespace HomeAutomation.App.Models
     private string _description;
     private int _id;
 
-    public RoomViewModel(int id, string description)
+    public RoomViewModel(int id)
     {
       _id = id;
-      _description = description;
     }
 
     public int Id

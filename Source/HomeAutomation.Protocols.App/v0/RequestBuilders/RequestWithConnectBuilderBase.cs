@@ -9,13 +9,13 @@ namespace HomeAutomation.Protocols.App.v0.RequestBuilders
     public byte ConnectionIdentifier2 { get; }
     public byte ConnectionIdentifier3 { get; }
 
-    protected RequestWithConnectBuilderBase(ICounter counter, byte[] connectionIdentifier)
+    protected RequestWithConnectBuilderBase(ICounter counter, IConnectionIdentification connectionIdentifier)
       : base(counter)
     {
-      ConnectionIdentifier0 = connectionIdentifier[0];
-      ConnectionIdentifier1 = connectionIdentifier[1];
-      ConnectionIdentifier2 = connectionIdentifier[2];
-      ConnectionIdentifier3 = connectionIdentifier[3];
+      ConnectionIdentifier0 = connectionIdentifier.Current[0];
+      ConnectionIdentifier1 = connectionIdentifier.Current[1];
+      ConnectionIdentifier2 = connectionIdentifier.Current[2];
+      ConnectionIdentifier3 = connectionIdentifier.Current[3];
     }
 
     protected override List<byte> OnBuild()
