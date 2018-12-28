@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace HomeAutomation.Protocols.App.v0.RequestBuilders
 {
-  public abstract class RequestBuilderBase
+  public abstract class RequestBuilderBase : IRequestBuilder
   {
     private readonly ICounter _counter;
     private byte[] _dataBytes;
@@ -19,6 +19,11 @@ namespace HomeAutomation.Protocols.App.v0.RequestBuilders
     protected abstract byte RequestType3 { get; }
 
     public byte[] Data { get; private set; }
+
+    public byte[] Build(int data)
+    {
+      return Build(BitConverter.GetBytes(data));
+    }
 
     public byte[] Build(params byte[] dataBytes)
     {

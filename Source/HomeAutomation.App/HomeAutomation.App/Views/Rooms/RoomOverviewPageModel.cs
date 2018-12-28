@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using HomeAutomation.App.Communication;
 using HomeAutomation.App.Models;
@@ -13,12 +14,14 @@ namespace HomeAutomation.App.Views.Rooms
   {
     private readonly ICommunicator _communicator;
     private readonly IGetAllRoomsRequestBuilder _getAllRoomsRequestBuilder;
+    private readonly IGetRoomDescriptionRequestBuilder _getRoomDescriptionRequestBuilder;
     private ObservableCollection<RoomViewModel> _rooms = new ObservableCollection<RoomViewModel>();
 
-    public RoomOverviewPageModel(ICommunicator communicator, IGetAllRoomsRequestBuilder getAllRoomsRequestBuilder)
+    public RoomOverviewPageModel(ICommunicator communicator, IGetAllRoomsRequestBuilder getAllRoomsRequestBuilder, IGetRoomDescriptionRequestBuilder getRoomDescriptionRequestBuilder)
     {
       _communicator = communicator;
       _getAllRoomsRequestBuilder = getAllRoomsRequestBuilder;
+      _getRoomDescriptionRequestBuilder = getRoomDescriptionRequestBuilder;
     }
 
     public ObservableCollection<RoomViewModel> Rooms
@@ -45,13 +48,18 @@ namespace HomeAutomation.App.Views.Rooms
         foreach (var roomIdentifier in getAllRoomsResponse.RoomIdentifiers)
         {
           Rooms.Add(new RoomViewModel(roomIdentifier));
-          //          _communicator.SendAsync(_getRoomDescriptionRequestBuilder.Build());
+          _communicator.SendAsync(_getRoomDescriptionRequestBuilder.Build(roomIdentifier));
         }
       }
 
-//      if (response is GetRoomDescriptionResponse getRoomDescriptionResponse)
-//      {
-//      }
+      if (response is GetRoomDescriptionResponse getRoomDescriptionResponse)
+      {
+        var roomViewModel = Rooms.FirstOrDefault(x => x.Id == getRoomDescriptionResponse.RoomIdentifier);
+        if (roomViewModel != null)
+        {
+          roomViewModel.Description = getRoomDescriptionResponse.Description;
+        }
+      }
     }
 
     protected override Task OnLoadedAsync(object parameter)

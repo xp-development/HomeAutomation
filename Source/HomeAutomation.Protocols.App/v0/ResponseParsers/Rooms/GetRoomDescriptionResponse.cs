@@ -11,13 +11,15 @@
     public byte ResponseCode0 { get; }
     public byte ResponseCode1 { get; }
     public string Description { get; }
+    public int RoomIdentifier { get; }
 
-    public GetRoomDescriptionResponse(byte protocolVersion, ushort counter, byte responseCode0, byte responseCode1, string description)
+    public GetRoomDescriptionResponse(byte protocolVersion, ushort counter, byte responseCode0, byte responseCode1, int roomIdentifier, string description)
     {
       ProtocolVersion = protocolVersion;
       Counter = counter;
       ResponseCode0 = responseCode0;
       ResponseCode1 = responseCode1;
+      RoomIdentifier = roomIdentifier;
       Description = description;
     }
   }
