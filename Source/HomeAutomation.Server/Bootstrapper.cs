@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Networking.Sockets;
 using Grace.DependencyInjection;
+using HomeAutomation.Protocols.App.v0;
+using HomeAutomation.Protocols.App.v0.RequestParsers;
+using HomeAutomation.Protocols.App.v0.ResponseBuilders;
 using MetroLog;
 
 namespace HomeAutomation.Server
@@ -29,6 +32,10 @@ namespace HomeAutomation.Server
     private void ConfigureContainer()
     {
       Log.Debug("Configure container.");
+
+      _container.Configure(c => c.Export<RequestParser>().As<IRequestParser>().Lifestyle.Singleton());
+      _container.Configure(c => c.Export<ResponseBuilderDispatcher>().As<IResponseBuilderDispatcher>().Lifestyle.Singleton());
+      _container.Configure(c => c.Export<ConnectResponseBuilder>().As<IResponseBuilder>().Lifestyle.Singleton());
     }
 
     private IAsyncOperation<object> StartServerAsync()
@@ -54,20 +61,27 @@ namespace HomeAutomation.Server
     private void ConnectionReceived(StreamSocketListener sender, StreamSocketListenerConnectionReceivedEventArgs args)
     {
       Log.Info("Receive connection.");
-      byte[] dataBytes;
-      using (var reader = new BinaryReader(args.Socket.InputStream.AsStreamForRead()))
-      {
-        dataBytes = reader.ReadBytes(int.MaxValue);
-      }
+      var requestParser = _container.Locate<IRequestParser>();
+      var responseBuilderDispatcher = _container.Locate<IResponseBuilderDispatcher>();
 
-      Log.Debug($"Received data {BitConverter.ToString(dataBytes)}.");
-
-      using (var outputStream = args.Socket.OutputStream.AsStreamForWrite())
+      while (true)
       {
-        using (var streamWriter = new BinaryWriter(outputStream))
+        byte[] dataBytes;
+        using (var reader = new BinaryReader(args.Socket.InputStream.AsStreamForRead()))
         {
-          streamWriter.Write(new byte[0]);
-          streamWriter.Flush();
+          dataBytes = reader.ReadBytes(int.MaxValue);
+        }
+
+        Log.Debug($"Received data {BitConverter.ToString(dataBytes)}.");
+
+        var bytes = responseBuilderDispatcher.Build(requestParser.Parse(dataBytes));
+        using (var outputStream = args.Socket.OutputStream.AsStreamForWrite())
+        {
+          using (var streamWriter = new BinaryWriter(outputStream))
+          {
+            streamWriter.Write(bytes);
+            streamWriter.Flush();
+          }
         }
       }
     }

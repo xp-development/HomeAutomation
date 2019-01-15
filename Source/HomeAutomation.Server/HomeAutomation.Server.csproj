@@ -130,6 +130,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Automation.Knx">
+      <Version>2018.0.11</Version>
+    </PackageReference>
     <PackageReference Include="Grace">
       <Version>6.4.2</Version>
     </PackageReference>
@@ -139,6 +142,12 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.1.9</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HomeAutomation.Protocols.App\HomeAutomation.Protocols.App.csproj">
+      <Project>{b5a2adfc-39ba-43ff-ac17-e64944ac3281}</Project>
+      <Name>HomeAutomation.Protocols.App</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '15.0' ">
     <VisualStudioVersion>15.0</VisualStudioVersion>

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using HomeAutomation.Protocols.App.v0.RequestBuilders;
+using HomeAutomation.Protocols.App.v0.RequestParsers;
 
 namespace HomeAutomation.Protocols.App.v0.ResponseBuilders
 {
   public class ConnectResponseBuilder
-    : ResponseBuilderBase
+    : ResponseBuilderBase<ConnectRequest>
   {
     private static uint _connectionIdentifier;
 

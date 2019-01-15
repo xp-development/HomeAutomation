@@ -4,7 +4,9 @@ using HomeAutomation.Protocols.App.v0.RequestBuilders;
 
 namespace HomeAutomation.Protocols.App.v0.ResponseBuilders
 {
-  public abstract class ResponseBuilderBase
+  public abstract class ResponseBuilderBase<TRequest>
+    : IResponseBuilder
+    where TRequest : IRequest
   {
     public byte[] Build(IRequest request)
     {
@@ -23,6 +25,8 @@ namespace HomeAutomation.Protocols.App.v0.ResponseBuilders
 
       return bytes.ToArray();
     }
+
+    public Type RequestType => typeof(TRequest);
 
     protected abstract IEnumerable<byte> OnBuild(IRequest request);
   }

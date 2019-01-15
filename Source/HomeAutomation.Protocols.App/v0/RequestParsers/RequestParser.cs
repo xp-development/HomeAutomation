@@ -4,7 +4,7 @@ using HomeAutomation.Protocols.App.v0.RequestBuilders;
 
 namespace HomeAutomation.Protocols.App.v0.RequestParsers
 {
-  public class RequestParser
+  public class RequestParser : IRequestParser
   {
     private readonly IRequestDataParserFactory _parserFactory;
 
