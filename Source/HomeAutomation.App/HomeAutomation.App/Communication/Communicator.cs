@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using HomeAutomation.Protocols.App.v0.ResponseParsers;
@@ -7,34 +8,35 @@ namespace HomeAutomation.App.Communication
 {
   public class Communicator : ICommunicator
   {
-    private TcpClient _tcpClient;
+    private readonly TcpClient _tcpClient;
 
     public Communicator()
     {
-      var tcpClient = new TcpClient();
-      
-      var stream = tcpClient.GetStream();
-      
-//      stream.Write(data, 0, data.Length);
-//      Int32 bytes = stream.Read(data, 0, data.Length);
-//      responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-    }
-
-    public Task ConnectAsync()
-    {
       _tcpClient = new TcpClient();
-      return Task.CompletedTask;
     }
 
-    public Task DisconnectAsync()
+    public async Task SendAsync(byte[] dataBytes)
     {
-      _tcpClient = null;
-      return Task.CompletedTask;
+      if (!_tcpClient.Connected)
+      {
+        StartReceivingData();
+        await _tcpClient.ConnectAsync(IPAddress.Parse(""), 42123);
+      }
+
+      await _tcpClient.GetStream().WriteAsync(dataBytes, 0, dataBytes.Length);
     }
 
-    public Task SendAsync(byte[] dataBytes)
+    private void StartReceivingData()
     {
-      throw new NotImplementedException();
+      Task.Run(async () =>
+      {
+        while (_tcpClient.Connected)
+        {
+          var stream = _tcpClient.GetStream();
+          
+//          await stream.ReadAsync();
+        }
+      });
     }
 
     public event Action<IResponse> ReceiveData;
