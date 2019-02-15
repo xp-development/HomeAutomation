@@ -1,0 +1,36 @@
+branches:
+    only:
+      - master
+
+version: 2019.0.{build}
+configuration: Release
+
+before_build:
+- ps: nuget restore Source\HomeAutomation.sln
+
+image: Visual Studio 2017
+
+build:
+  verbosity: minimal
+
+
+assembly_info:
+  patch: true
+  file: AssemblyInfo.cs
+  assembly_version: '{version}-alpha'
+  assembly_file_version: '{version}-alpha'
+  assembly_informational_version: '{version}-alpha'
+  
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}-alpha'
+  package_version: '{version}-alpha'
+  assembly_version: '{version}-alpha'
+  file_version: '{version}-alpha'
+  informational_version: '{version}-alpha'
+  
+test:
+  assemblies:
+    only:
+      - '**\*.UnitTests.dll'
