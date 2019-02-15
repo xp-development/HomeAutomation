@@ -1,13 +1,10 @@
 ﻿using System.ComponentModel;
 using System.Threading.Tasks;
-using HomeAutomation.App.Events;
 
 namespace HomeAutomation.App.Mvvm
 {
   public abstract class ViewModelBase : NotifyPropertyChangedBase, IViewLoaded, IViewUnloaded
   {
-    public override event PropertyChangedEventHandler PropertyChanged;
-
     public Task LoadedAsync(object parameter)
     {
       return OnLoadedAsync(parameter);

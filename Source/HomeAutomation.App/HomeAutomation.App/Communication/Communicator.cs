@@ -8,10 +8,12 @@ namespace HomeAutomation.App.Communication
 {
   public class Communicator : ICommunicator
   {
+    private readonly IUserSettings _userSettings;
     private readonly TcpClient _tcpClient;
 
-    public Communicator()
+    public Communicator(IUserSettings userSettings)
     {
+      _userSettings = userSettings;
       _tcpClient = new TcpClient();
     }
 
@@ -20,7 +22,7 @@ namespace HomeAutomation.App.Communication
       if (!_tcpClient.Connected)
       {
         StartReceivingData();
-        await _tcpClient.ConnectAsync(IPAddress.Parse(""), 42123);
+        await _tcpClient.ConnectAsync(IPAddress.Parse(_userSettings.GetString("ServerIP")), _userSettings.GetInt32("ServerPort"));
       }
 
       await _tcpClient.GetStream().WriteAsync(dataBytes, 0, dataBytes.Length);

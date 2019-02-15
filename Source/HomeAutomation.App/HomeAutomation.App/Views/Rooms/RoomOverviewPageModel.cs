@@ -15,7 +15,6 @@ namespace HomeAutomation.App.Views.Rooms
     private readonly ICommunicator _communicator;
     private readonly IGetAllRoomsRequestBuilder _getAllRoomsRequestBuilder;
     private readonly IGetRoomDescriptionRequestBuilder _getRoomDescriptionRequestBuilder;
-    private ObservableCollection<RoomViewModel> _rooms = new ObservableCollection<RoomViewModel>();
 
     public RoomOverviewPageModel(ICommunicator communicator, IGetAllRoomsRequestBuilder getAllRoomsRequestBuilder, IGetRoomDescriptionRequestBuilder getRoomDescriptionRequestBuilder)
     {
@@ -24,21 +23,7 @@ namespace HomeAutomation.App.Views.Rooms
       _getRoomDescriptionRequestBuilder = getRoomDescriptionRequestBuilder;
     }
 
-    public ObservableCollection<RoomViewModel> Rooms
-    {
-      get => _rooms;
-      set
-      {
-        _rooms = value;
-        InvokePropertyChanged();
-      }
-    }
-
-    protected override Task OnUnloadedAsync()
-    {
-      _communicator.ReceiveData -= OnReceiveData;
-      return base.OnUnloadedAsync();
-    }
+    public ObservableCollection<RoomViewModel> Rooms { get; } = new ObservableCollection<RoomViewModel>();
 
     private void OnReceiveData(IResponse response)
     {
@@ -67,6 +52,12 @@ namespace HomeAutomation.App.Views.Rooms
       _communicator.ReceiveData += OnReceiveData;
       _communicator.SendAsync(_getAllRoomsRequestBuilder.Build());
       return base.OnLoadedAsync(parameter);
+    }
+
+    protected override Task OnUnloadedAsync()
+    {
+      _communicator.ReceiveData -= OnReceiveData;
+      return base.OnUnloadedAsync();
     }
   }
 }

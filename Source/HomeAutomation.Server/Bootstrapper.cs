@@ -34,6 +34,7 @@ namespace HomeAutomation.Server
       Log.Debug("Configure container.");
 
       _container.Configure(c => c.Export<RequestParser>().As<IRequestParser>().Lifestyle.Singleton());
+      _container.Configure(c => c.Export<RequestDataParserFactory>().As<IRequestDataParserFactory>().Lifestyle.Singleton());
       _container.Configure(c => c.Export<ResponseBuilderDispatcher>().As<IResponseBuilderDispatcher>().Lifestyle.Singleton());
       _container.Configure(c => c.Export<ConnectResponseBuilder>().As<IResponseBuilder>().Lifestyle.Singleton());
     }
@@ -47,7 +48,7 @@ namespace HomeAutomation.Server
         {
           var streamSocketListener = new StreamSocketListener();
           streamSocketListener.ConnectionReceived += ConnectionReceived;
-          await streamSocketListener.BindServiceNameAsync("42123");
+          await streamSocketListener.BindEndpointAsync(null, "42123");
         }
         catch (Exception ex)
         {

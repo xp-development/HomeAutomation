@@ -84,6 +84,7 @@
     <Compile Include="_v0\_RequestBuilders\_Rooms\_GetRoomDescriptionRequestBuilder\Build.cs" />
     <Compile Include="_v0\_RequestBuilders\_Rooms\_GetAllRoomsRequestBuilder\Build.cs" />
     <Compile Include="_v0\_RequestParsers\_ConnectRequestDataParser\Parse.cs" />
+    <Compile Include="_v0\_RequestParsers\_RequestDataParserFactory\TryCreate.cs" />
     <Compile Include="_v0\_RequestParsers\_RequestParser\Parse.cs" />
     <Compile Include="_v0\_ResponseBuilders\_ConnectResponseBuilder\Build.cs" />
     <Compile Include="_v0\_ResponseParsers\_ConnectResponseDataParser\Parse.cs" />
