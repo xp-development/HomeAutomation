@@ -7,5 +7,4 @@ Coming supported protocols:
 - KNX
 - Enocean
 
-
 http://xp-development.blogspot.com/search/label/Home%20Server
