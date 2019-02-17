@@ -5,22 +5,13 @@ namespace HomeAutomation.App.Models
   public class RoomViewModel : NotifyPropertyChangedBase
   {
     private string _description;
-    private int _id;
 
     public RoomViewModel(int id)
     {
-      _id = id;
+      Id = id;
     }
 
-    public int Id
-    {
-      get => _id;
-      set
-      {
-        _id = value;
-        InvokePropertyChanged();
-      }
-    }
+    public int Id { get; }
 
     public string Description
     {

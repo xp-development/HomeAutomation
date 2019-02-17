@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Net;
-using System.Net.Sockets;
 using System.Threading.Tasks;
 using HomeAutomation.Protocols.App.v0.ResponseParsers;
 
@@ -8,13 +7,13 @@ namespace HomeAutomation.App.Communication
 {
   public class Communicator : ICommunicator
   {
+    private readonly ITcpClient _tcpClient;
     private readonly IUserSettings _userSettings;
-    private readonly TcpClient _tcpClient;
 
-    public Communicator(IUserSettings userSettings)
+    public Communicator(IUserSettings userSettings, ITcpClient tcpClient)
     {
+      _tcpClient = tcpClient;
       _userSettings = userSettings;
-      _tcpClient = new TcpClient();
     }
 
     public async Task SendAsync(byte[] dataBytes)
@@ -25,8 +24,10 @@ namespace HomeAutomation.App.Communication
         await _tcpClient.ConnectAsync(IPAddress.Parse(_userSettings.GetString("ServerIP")), _userSettings.GetInt32("ServerPort"));
       }
 
-      await _tcpClient.GetStream().WriteAsync(dataBytes, 0, dataBytes.Length);
+      await _tcpClient.WriteAsync(dataBytes);
     }
+
+    public event Action<IResponse> ReceiveData;
 
     private void StartReceivingData()
     {
@@ -34,13 +35,11 @@ namespace HomeAutomation.App.Communication
       {
         while (_tcpClient.Connected)
         {
-          var stream = _tcpClient.GetStream();
-          
+          var dataBytes = _tcpClient.ReadAsync();
+
 //          await stream.ReadAsync();
         }
       });
     }
-
-    public event Action<IResponse> ReceiveData;
   }
 }

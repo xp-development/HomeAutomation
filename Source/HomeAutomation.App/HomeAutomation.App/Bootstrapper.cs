@@ -38,8 +38,8 @@ namespace HomeAutomation.App
       _container.Configure(c => c.Export<EventAggregator>().As<IEventAggregator>().Lifestyle.Singleton());
       _container.Configure(c => c.Export<Communicator>().As<ICommunicator>().Lifestyle.Singleton());
       _container.Configure(c => c.Export<UserSettings>().As<IUserSettings>().Lifestyle.Singleton());
-      _container.Configure(
-        c => c.ExportFactory<IServiceLocator>(() => new ServiceLocator(_container)).Lifestyle.Singleton());
+      _container.Configure(c => c.Export<TcpClient>().As<ITcpClient>());
+      _container.Configure(c => c.ExportFactory<IServiceLocator>(() => new ServiceLocator(_container)).Lifestyle.Singleton());
     }
 
     private void ConfigureProtocolDependencies()
