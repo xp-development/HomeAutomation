@@ -4,4 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HomeAutomation.Protocols.App\HomeAutomation.Protocols.App.csproj" />
+  </ItemGroup>
+
 </Project>

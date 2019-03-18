@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomation.App.UnitTest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeAutomation.Server.Core", "HomeAutomation.Server.Core\HomeAutomation.Server.Core.csproj", "{DCC2F909-4B87-410A-8330-2F857EEBF049}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomation.Server.Core.UnitTests", "HomeAutomation.Server.Core.UnitTests\HomeAutomation.Server.Core.UnitTests.csproj", "{56608072-BA1E-41CD-B59C-996C4BB29EAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -209,6 +211,26 @@ Global
 		{DCC2F909-4B87-410A-8330-2F857EEBF049}.Release|x64.Build.0 = Release|Any CPU
 		{DCC2F909-4B87-410A-8330-2F857EEBF049}.Release|x86.ActiveCfg = Release|Any CPU
 		{DCC2F909-4B87-410A-8330-2F857EEBF049}.Release|x86.Build.0 = Release|Any CPU
+		{56608072-BA1E-41CD-B59C-996C4BB29EAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56608072-BA1E-41CD-B59C-996C4BB29EAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56608072-BA1E-41CD-B59C-996C4BB29EAA}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{56608072-BA1E-41CD-B59C-996C4BB29EAA}.Debug|ARM.Build.0 = Debug|Any CPU
+		{56608072-BA1E-41CD-B59C-996C4BB29EAA}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{56608072-BA1E-41CD-B59C-996C4BB29EAA}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{56608072-BA1E-41CD-B59C-996C4BB29EAA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{56608072-BA1E-41CD-B59C-996C4BB29EAA}.Debug|x64.Build.0 = Debug|Any CPU
+		{56608072-BA1E-41CD-B59C-996C4BB29EAA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{56608072-BA1E-41CD-B59C-996C4BB29EAA}.Debug|x86.Build.0 = Debug|Any CPU
+		{56608072-BA1E-41CD-B59C-996C4BB29EAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56608072-BA1E-41CD-B59C-996C4BB29EAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56608072-BA1E-41CD-B59C-996C4BB29EAA}.Release|ARM.ActiveCfg = Release|Any CPU
+		{56608072-BA1E-41CD-B59C-996C4BB29EAA}.Release|ARM.Build.0 = Release|Any CPU
+		{56608072-BA1E-41CD-B59C-996C4BB29EAA}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{56608072-BA1E-41CD-B59C-996C4BB29EAA}.Release|ARM64.Build.0 = Release|Any CPU
+		{56608072-BA1E-41CD-B59C-996C4BB29EAA}.Release|x64.ActiveCfg = Release|Any CPU
+		{56608072-BA1E-41CD-B59C-996C4BB29EAA}.Release|x64.Build.0 = Release|Any CPU
+		{56608072-BA1E-41CD-B59C-996C4BB29EAA}.Release|x86.ActiveCfg = Release|Any CPU
+		{56608072-BA1E-41CD-B59C-996C4BB29EAA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

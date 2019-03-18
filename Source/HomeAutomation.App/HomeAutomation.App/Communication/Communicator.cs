@@ -8,11 +8,13 @@ namespace HomeAutomation.App.Communication
   public class Communicator : ICommunicator
   {
     private readonly ITcpClient _tcpClient;
+    private readonly IResponseParser _responseParser;
     private readonly IUserSettings _userSettings;
 
-    public Communicator(IUserSettings userSettings, ITcpClient tcpClient)
+    public Communicator(IUserSettings userSettings, ITcpClient tcpClient, IResponseParser responseParser)
     {
       _tcpClient = tcpClient;
+      _responseParser = responseParser;
       _userSettings = userSettings;
     }
 
@@ -20,8 +22,8 @@ namespace HomeAutomation.App.Communication
     {
       if (!_tcpClient.Connected)
       {
-        StartReceivingData();
         await _tcpClient.ConnectAsync(IPAddress.Parse(_userSettings.GetString("ServerIP")), _userSettings.GetInt32("ServerPort"));
+        StartReceivingData();
       }
 
       await _tcpClient.WriteAsync(dataBytes);
@@ -35,8 +37,10 @@ namespace HomeAutomation.App.Communication
       {
         while (_tcpClient.Connected)
         {
-          var dataBytes = _tcpClient.ReadAsync();
+          var dataBytes = await _tcpClient.ReadAsync();
 
+          var response = _responseParser.Parse(dataBytes);
+//          Console.WriteLine(response.ResponseCode0 + "-" + response.ResponseCode1 + "-" + response.RequestType0 + "-" + response.RequestType1);
 //          await stream.ReadAsync();
         }
       });

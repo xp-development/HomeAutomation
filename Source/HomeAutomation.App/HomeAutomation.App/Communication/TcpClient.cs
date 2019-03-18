@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace HomeAutomation.App.Communication
@@ -24,10 +25,11 @@ namespace HomeAutomation.App.Communication
       return _tcpClient.GetStream().WriteAsync(dataBytes, 0, dataBytes.Length);
     }
 
-    public Task<byte[]> ReadAsync()
+    public async Task<byte[]> ReadAsync()
     {
-//      return _tcpClient.GetStream().ReadAsync();
-      return null;
+      var bytes = new byte[ushort.MaxValue];
+      var dataLength = await _tcpClient.GetStream().ReadAsync(bytes, 0 , ushort.MaxValue);
+      return bytes.Take(dataLength).ToArray();
     }
   }
 }

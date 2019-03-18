@@ -22,7 +22,7 @@ namespace HomeAutomation.App.UnitTests._Communication._Communicator
     public async void ShouldConnectTcpClientIfNotConnected()
     {
       _tcpClientMock.Setup(x => x.Connected).Returns(false);
-      var communicator = new Communicator(_userSettingsMock.Object, _tcpClientMock.Object);
+      var communicator = new Communicator(_userSettingsMock.Object, _tcpClientMock.Object, null);
 
       await communicator.SendAsync(new byte[0]);
 
@@ -33,7 +33,7 @@ namespace HomeAutomation.App.UnitTests._Communication._Communicator
     public async void ShouldNotConnectTcpClientIfAlreadyConnected()
     {
       _tcpClientMock.Setup(x => x.Connected).Returns(true);
-      var communicator = new Communicator(_userSettingsMock.Object, _tcpClientMock.Object);
+      var communicator = new Communicator(_userSettingsMock.Object, _tcpClientMock.Object, null);
 
       await communicator.SendAsync(new byte[0]);
 
@@ -44,7 +44,7 @@ namespace HomeAutomation.App.UnitTests._Communication._Communicator
     public async void ShouldWriteBytes()
     {
       _tcpClientMock.Setup(x => x.Connected).Returns(true);
-      var communicator = new Communicator(_userSettingsMock.Object, _tcpClientMock.Object);
+      var communicator = new Communicator(_userSettingsMock.Object, _tcpClientMock.Object, null);
 
       await communicator.SendAsync(new byte[] { 0x11, 0x22 });
 

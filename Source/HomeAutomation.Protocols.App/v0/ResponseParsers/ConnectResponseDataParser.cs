@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace HomeAutomation.Protocols.App.v0.ResponseParsers
 {
+  [ResponseDataParser(0x01, 0x00, 0x00, 0x00)]
   public class ConnectResponseDataParser : IResponseDataParser
   {
     public ConnectResponse Parse(byte protocolVersion, ushort counter, byte responseCode0, byte responseCode1, IEnumerable<byte> data)

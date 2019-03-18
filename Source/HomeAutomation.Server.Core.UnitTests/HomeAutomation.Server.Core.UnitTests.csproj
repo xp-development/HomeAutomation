@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A7A2A230-D8D7-46CC-88F2-E261E5A82573}</ProjectGuid>
+    <ProjectGuid>{56608072-BA1E-41CD-B59C-996C4BB29EAA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HomeAutomation.App.UnitTests</RootNamespace>
-    <AssemblyName>HomeAutomation.App.UnitTests</AssemblyName>
+    <RootNamespace>HomeAutomation.Server.Core.UnitTests</RootNamespace>
+    <AssemblyName>HomeAutomation.Server.Core.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -54,8 +54,6 @@
     </Reference>
     <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
-      <Private>True</Private>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -78,28 +76,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="_Communication\_Communicator\SendAsync.cs" />
-    <Compile Include="_Views\_Rooms\_RoomOverviewPageModel\OnReceiveData.cs" />
-    <Compile Include="_Views\_Settings\_SettingsPageModel\ServerPort.cs" />
-    <Compile Include="_Views\_Settings\_SettingsPageModel\ServerIp.cs" />
+    <Compile Include="_HomeAutomationCommunication\HandleReceivedBytes.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HomeAutomation.App\HomeAutomation.App\HomeAutomation.App.csproj">
-      <Project>{14cdbc40-eab9-46fa-88d7-d307bc896e42}</Project>
-      <Name>HomeAutomation.App</Name>
-    </ProjectReference>
     <ProjectReference Include="..\HomeAutomation.Protocols.App\HomeAutomation.Protocols.App.csproj">
-      <Project>{B5A2ADFC-39BA-43FF-AC17-E64944AC3281}</Project>
+      <Project>{b5a2adfc-39ba-43ff-ac17-e64944ac3281}</Project>
       <Name>HomeAutomation.Protocols.App</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HomeAutomation.Server.Core\HomeAutomation.Server.Core.csproj">
+      <Project>{dcc2f909-4b87-410a-8330-2f857eebf049}</Project>
+      <Name>HomeAutomation.Server.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

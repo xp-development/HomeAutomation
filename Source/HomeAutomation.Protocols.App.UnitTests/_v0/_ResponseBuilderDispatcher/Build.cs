@@ -6,7 +6,7 @@ using HomeAutomation.Protocols.App.v0.ResponseBuilders;
 using Moq;
 using Xunit;
 
-namespace HomeAutomation.Protocols.App.UnitTests._ResponseBuilderDispatcher
+namespace HomeAutomation.Protocols.App.UnitTests._v0._ResponseBuilderDispatcher
 {
   public class Build
   {

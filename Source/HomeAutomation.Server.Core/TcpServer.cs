@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
@@ -19,9 +20,11 @@ namespace HomeAutomation.Server.Core
         {
           var client = server.AcceptTcpClient();
           var bytes = new byte[ushort.MaxValue];
-          while (client.GetStream().Read(bytes, 0, bytes.Length) != 0)
+          var read = client.GetStream().Read(bytes, 0, bytes.Length);
+          while (read != 0)
           {
-            InvokeDataReceived(client, bytes);
+            var dataBytes = bytes.Take(read).ToArray();
+            InvokeDataReceived(client, dataBytes);
           }
           client.Close();
         }

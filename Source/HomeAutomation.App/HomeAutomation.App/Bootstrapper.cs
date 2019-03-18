@@ -5,6 +5,8 @@ using HomeAutomation.App.Events;
 using HomeAutomation.App.Views.Shell;
 using HomeAutomation.Protocols.App.v0.RequestBuilders;
 using HomeAutomation.Protocols.App.v0.RequestBuilders.Rooms;
+using HomeAutomation.Protocols.App.v0.ResponseParsers;
+using HomeAutomation.Protocols.App.v0.ResponseParsers.Rooms;
 
 namespace HomeAutomation.App
 {
@@ -29,8 +31,17 @@ namespace HomeAutomation.App
 
       ConfigureApplicationDependencies();
       ConfigureProtocolDependencies();
+      RegisterProtocolResponseDataParsers();
 
       StaticServiceLocator.SetCurrent(_container.Locate<IServiceLocator>());
+    }
+
+    private void RegisterProtocolResponseDataParsers()
+    {
+      var dataParserFactory = _container.Locate<IResponseDataParserFactory>();
+      dataParserFactory.Register<ConnectResponseDataParser>();
+      dataParserFactory.Register<GetAllRoomsResponseDataParser>();
+      dataParserFactory.Register<GetRoomDescriptionResponseDataParser>();
     }
 
     private void ConfigureApplicationDependencies()
@@ -48,6 +59,8 @@ namespace HomeAutomation.App
       _container.Configure(c => c.Export<GetRoomDescriptionRequestBuilder>().As<IGetRoomDescriptionRequestBuilder>().Lifestyle.Singleton());
       _container.Configure(c => c.Export<Counter>().As<ICounter>().Lifestyle.Singleton());
       _container.Configure(c => c.Export<ConnectionIdentification>().As<IConnectionIdentification>().Lifestyle.Singleton());
+      _container.Configure(c => c.Export<ResponseParser>().As<IResponseParser>().Lifestyle.Singleton());
+      _container.Configure(c => c.Export<ResponseDataParserFactory>().As<IResponseDataParserFactory>().Lifestyle.Singleton());
     }
   }
 }

@@ -5,6 +5,7 @@ using System.Text;
 
 namespace HomeAutomation.Protocols.App.v0.ResponseParsers.Rooms
 {
+  [ResponseDataParser(0x02, 0x02, 0x00, 0x00)]
   public class GetRoomDescriptionResponseDataParser : IResponseDataParser
   {
     public GetRoomDescriptionResponse Parse(byte protocolVersion, ushort counter, byte responseCode0, byte responseCode1, IEnumerable<byte> data)
