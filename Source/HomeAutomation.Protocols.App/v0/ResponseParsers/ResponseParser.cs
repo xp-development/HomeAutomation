@@ -45,7 +45,7 @@ namespace HomeAutomation.Protocols.App.v0.ResponseParsers
       if(crc0 != computeChecksum[0] || crc1 != computeChecksum[1])
         return new CommonErrorResponse(dataBytes, 0xFF, 0x01);
 
-      return responseDataParser.Parse(protocolVersion, counter, responseCode0, responseCode1, data);
+      return responseCode0 == 0xFF ? new CommonErrorResponse(dataBytes, responseCode0, responseCode1) : responseDataParser.Parse(protocolVersion, counter, responseCode0, responseCode1, data);
     }
   }
 }

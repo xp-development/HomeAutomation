@@ -1,12 +1,15 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using MetroLog;
 
 namespace HomeAutomation.App.Communication
 {
   public class TcpClient : ITcpClient
   {
     private readonly System.Net.Sockets.TcpClient _tcpClient;
+    private static readonly ILogger Log = LogManagerFactory.DefaultLogManager.GetLogger<TcpClient>();
 
     public TcpClient()
     {
@@ -22,6 +25,7 @@ namespace HomeAutomation.App.Communication
 
     public Task WriteAsync(byte[] dataBytes)
     {
+      Log.Debug($"Write: {BitConverter.ToString(dataBytes)}");
       return _tcpClient.GetStream().WriteAsync(dataBytes, 0, dataBytes.Length);
     }
 
@@ -29,7 +33,9 @@ namespace HomeAutomation.App.Communication
     {
       var bytes = new byte[ushort.MaxValue];
       var dataLength = await _tcpClient.GetStream().ReadAsync(bytes, 0 , ushort.MaxValue);
-      return bytes.Take(dataLength).ToArray();
+      var dataBytes = bytes.Take(dataLength).ToArray();
+      Log.Debug($"Read: {BitConverter.ToString(dataBytes)}");
+      return dataBytes;
     }
   }
 }
