@@ -158,7 +158,7 @@ sample (00 02 01 00 00 01 00 CC CC CC CC 00 00 16 00 | AA BB CC DD 11 00 22 33 4
 > request (data: living room)
 
 ```
-00 02 00 00 00 01 00 CC CC CC CC 16 00 | 6C 00 69 00 76 00 69 00 6E 00 67 00 20 00 72 00 6F 00 6F 00 6D 00 | AF FE
+00 02 00 00 00 01 00 CC CC CC CC 18 00 | 16 00 6C 00 69 00 76 00 69 00 6E 00 67 00 20 00 72 00 6F 00 6F 00 6D 00 | AF FE
 ```
 
 > respone (data: unique room identifier if response code is 00 00)
@@ -184,7 +184,7 @@ sample (00 02 01 00 00 01 00 CC CC CC CC 00 00 16 00 | AA BB CC DD 11 00 22 33 4
 > respone (data: gets 4 unique identifier, for each room one identifier if response code is 00 00)
 
 ```
-00 02 01 00 00 01 00 CC CC CC CC 00 00 10 00 | AA BB CC DD 11 00 22 33 44 55 66 77 99 88 77 66 | AF FE
+00 02 01 00 00 01 00 CC CC CC CC 00 00 12 00 | 10 00 AA BB CC DD 11 00 22 33 44 55 66 77 99 88 77 66 | AF FE
 ```
 
 > repsonse codes
@@ -193,7 +193,7 @@ sample (00 02 01 00 00 01 00 CC CC CC CC 00 00 16 00 | AA BB CC DD 11 00 22 33 4
 
 #### get room description
 
-> request
+> request (data: unique room identifier)
 
 ```
 00 02 02 00 00 01 00 CC CC CC CC 04 00 | AA BB CC DD | AF FE
@@ -202,7 +202,7 @@ sample (00 02 01 00 00 01 00 CC CC CC CC 00 00 16 00 | AA BB CC DD 11 00 22 33 4
 > respone (data: get room identifier and decription if response code is 00 00)
 
 ```
-00 02 02 00 00 01 00 CC CC CC CC 00 00 1A 00 | AA BB CC DD 6C 00 69 00 76 00 69 00 6E 00 67 00 20 00 72 00 6F 00 6F 00 6D 00 | AF FE
+00 02 02 00 00 01 00 CC CC CC CC 00 00 1C 00 | AA BB CC DD 16 00 6C 00 69 00 76 00 69 00 6E 00 67 00 20 00 72 00 6F 00 6F 00 6D 00 | AF FE
 ```
 
 > repsonse codes
@@ -215,7 +215,7 @@ sample (00 02 01 00 00 01 00 CC CC CC CC 00 00 16 00 | AA BB CC DD 11 00 22 33 4
 > request (data: unique room identifier, living room)
 
 ```
-00 02 03 00 00 01 00 CC CC CC CC 1A 00 | AA BB CC DD 6C 00 69 00 76 00 69 00 6E 00 67 00 20 00 72 00 6F 00 6F 00 6D 00 | AF FE
+00 02 03 00 00 01 00 CC CC CC CC 1C 00 | AA BB CC DD 16 00 6C 00 69 00 76 00 69 00 6E 00 67 00 20 00 72 00 6F 00 6F 00 6D 00 | AF FE
 ```
 
 > respone
