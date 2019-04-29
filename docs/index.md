@@ -17,6 +17,8 @@
   - create 00
   - get all 01
   - get description 02
+  - rename room 03
+  - delete room 04
 
 ### Common response codes:
 
@@ -221,7 +223,7 @@ sample (00 02 01 00 00 00 00 1A 00 | CC CC CC CC | AA BB CC DD 11 00 22 33 44 55
 > respone
 
 ```
-00 02 00 00 00 00 00 04 00 | CC CC CC CC | AF FE
+00 02 03 00 00 00 00 04 00 | CC CC CC CC | AF FE
 ```
 
 > repsonse codes
@@ -236,13 +238,13 @@ sample (00 02 01 00 00 00 00 1A 00 | CC CC CC CC | AA BB CC DD 11 00 22 33 44 55
 > request (data: unique room identifier)
 
 ```
-00 02 03 00 00 08 00 | CC CC CC CC | AA BB CC DD | AF FE
+00 02 04 00 00 08 00 | CC CC CC CC | AA BB CC DD | AF FE
 ```
 
 > respone
 
 ```
-00 02 00 00 00 00 00 04 00 | CC CC CC CC | AF FE
+00 02 04 00 00 00 00 04 00 | CC CC CC CC | AF FE
 ```
 
 > repsonse codes
