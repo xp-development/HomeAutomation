@@ -41,7 +41,7 @@ response
 > protocol version (1 byte) request type (4 byte) response code (2 byte) data length (ushort) data (data length bytes) crc (2 byte)
 
 ```
-sample (00 01 00 00 00 00 00 04 00 | AA BB CC DD | AF FE)
+sample (00 01 00 00 00 00 00 00 04 | AA BB CC DD | AF FE)
 ```
 
 #### Commands (connect required)
@@ -56,7 +56,7 @@ response
 > protocol version (1 byte) request type (4 byte) response code (2 byte) data length (ushort) connection identifier (4 byte) data (data length bytes - 4 for connection identifier) crc (2 byte)
 
 ```
-sample (00 02 01 00 00 00 00 1A 00 | CC CC CC CC | AA BB CC DD 11 00 22 33 44 55 66 77 99 88 77 66 | AF FE)
+sample (00 02 01 00 00 00 00 00 16 | CC CC CC CC | 00 10 AA BB CC DD 11 00 22 33 44 55 66 77 99 88 77 66 | AF FE)
 ```
 
 ### Connection
@@ -71,7 +71,7 @@ sample (00 02 01 00 00 00 00 1A 00 | CC CC CC CC | AA BB CC DD 11 00 22 33 44 55
 > response (data: connection identifier)
 
 ```
-00 01 00 00 00 00 00 04 00 | CC CC CC CC | AF FE
+00 01 00 00 00 00 00 00 04 | CC CC CC CC | AF FE
 ```
 
 > repsonse codes
@@ -83,13 +83,13 @@ sample (00 02 01 00 00 00 00 1A 00 | CC CC CC CC | AA BB CC DD 11 00 22 33 44 55
 > request
 
 ```
-00 01 02 00 00 04 00 | CC CC CC CC | AF FE
+00 01 02 00 00 00 04 | CC CC CC CC | AF FE
 ```
 
 > response
 
 ```
-00 01 02 00 00 00 00 04 00 | CC CC CC CC | AF FE
+00 01 02 00 00 00 00 00 04 | CC CC CC CC | AF FE
 ```
 
 > repsonse codes
@@ -102,13 +102,13 @@ sample (00 02 01 00 00 00 00 1A 00 | CC CC CC CC | AA BB CC DD 11 00 22 33 44 55
 > request
 
 ```
-00 01 01 00 00 04 00 | CC CC CC CC | AF FE
+00 01 01 00 00 00 04 | CC CC CC CC | AF FE
 ```
 
 > response
 
 ```
-00 01 01 00 00 00 00 04 00 | CC CC CC CC | AF FE
+00 01 01 00 00 00 00 00 04 | CC CC CC CC | AF FE
 ```
 
 > repsonse codes
@@ -121,13 +121,13 @@ sample (00 02 01 00 00 00 00 1A 00 | CC CC CC CC | AA BB CC DD 11 00 22 33 44 55
 > request
 
 ```
-00 01 01 01 00 04 00 | CC CC CC CC | AF FE
+00 01 01 01 00 00 04 | CC CC CC CC | AF FE
 ```
 
 > response
 
 ```
-00 01 01 01 00 00 00 04 00 | CC CC CC CC | AF FE
+00 01 01 01 00 00 00 00 04 | CC CC CC CC | AF FE
 ```
 
 > repsonse codes
@@ -140,13 +140,13 @@ sample (00 02 01 00 00 00 00 1A 00 | CC CC CC CC | AA BB CC DD 11 00 22 33 44 55
 > request
 
 ```
-00 01 01 02 00 04 00 | CC CC CC CC | AF FE
+00 01 01 02 00 00 04 | CC CC CC CC | AF FE
 ```
 
 > response (data: connection identifier)
 
 ```
-00 01 01 02 00 00 00 04 00 | CC CC CC CC | AF FE
+00 01 01 02 00 00 00 00 04 | CC CC CC CC | AF FE
 ```
 
 > repsonse codes
@@ -160,13 +160,13 @@ sample (00 02 01 00 00 00 00 1A 00 | CC CC CC CC | AA BB CC DD 11 00 22 33 44 55
 > request (data: living room)
 
 ```
-00 02 00 00 00 1C 00 | CC CC CC CC | 16 00 6C 00 69 00 76 00 69 00 6E 00 67 00 20 00 72 00 6F 00 6F 00 6D 00 | AF FE
+00 02 00 00 00 00 1C | CC CC CC CC | 00 16 6C 00 69 00 76 00 69 00 6E 00 67 00 20 00 72 00 6F 00 6F 00 6D 00 | AF FE
 ```
 
 > respone (data: unique room identifier if response code is 00 00)
 
 ```
-00 02 00 00 00 00 00 08 00 | CC CC CC CC | AA BB CC DD | AF FE
+00 02 00 00 00 00 00 00 08 | CC CC CC CC | AA BB CC DD | AF FE
 ```
 
 > repsonse codes
@@ -180,13 +180,13 @@ sample (00 02 01 00 00 00 00 1A 00 | CC CC CC CC | AA BB CC DD 11 00 22 33 44 55
 > request
 
 ```
-00 02 01 00 00 04 00 | CC CC CC CC | AF FE
+00 02 01 00 00 00 04 | CC CC CC CC | AF FE
 ```
 
 > respone (data: gets 4 unique identifier, for each room one identifier if response code is 00 00)
 
 ```
-00 02 01 00 00 00 00 16 00 | CC CC CC CC | 10 00 AA BB CC DD 11 00 22 33 44 55 66 77 99 88 77 66 | AF FE
+00 02 01 00 00 00 00 00 16 | CC CC CC CC | 00 10 AA BB CC DD 11 00 22 33 44 55 66 77 99 88 77 66 | AF FE
 ```
 
 > repsonse codes
@@ -198,13 +198,13 @@ sample (00 02 01 00 00 00 00 1A 00 | CC CC CC CC | AA BB CC DD 11 00 22 33 44 55
 > request (data: unique room identifier)
 
 ```
-00 02 02 00 00 08 00 | CC CC CC CC | AA BB CC DD | AF FE
+00 02 02 00 00 00 08 | CC CC CC CC | AA BB CC DD | AF FE
 ```
 
 > respone (data: get room identifier and decription if response code is 00 00)
 
 ```
-00 02 02 00 00 00 00 20 00 | CC CC CC CC | AA BB CC DD 16 00 6C 00 69 00 76 00 69 00 6E 00 67 00 20 00 72 00 6F 00 6F 00 6D 00 | AF FE
+00 02 02 00 00 00 00 00 20 | CC CC CC CC | AA BB CC DD 00 16 6C 00 69 00 76 00 69 00 6E 00 67 00 20 00 72 00 6F 00 6F 00 6D 00 | AF FE
 ```
 
 > repsonse codes
@@ -217,13 +217,13 @@ sample (00 02 01 00 00 00 00 1A 00 | CC CC CC CC | AA BB CC DD 11 00 22 33 44 55
 > request (data: unique room identifier, living room)
 
 ```
-00 02 03 00 00 20 00 | CC CC CC CC | AA BB CC DD 16 00 6C 00 69 00 76 00 69 00 6E 00 67 00 20 00 72 00 6F 00 6F 00 6D 00 | AF FE
+00 02 03 00 00 00 20 | CC CC CC CC | AA BB CC DD 00 16 6C 00 69 00 76 00 69 00 6E 00 67 00 20 00 72 00 6F 00 6F 00 6D 00 | AF FE
 ```
 
 > respone
 
 ```
-00 02 03 00 00 00 00 04 00 | CC CC CC CC | AF FE
+00 02 03 00 00 00 00 00 04 | CC CC CC CC | AF FE
 ```
 
 > repsonse codes
@@ -238,13 +238,13 @@ sample (00 02 01 00 00 00 00 1A 00 | CC CC CC CC | AA BB CC DD 11 00 22 33 44 55
 > request (data: unique room identifier)
 
 ```
-00 02 04 00 00 08 00 | CC CC CC CC | AA BB CC DD | AF FE
+00 02 04 00 00 00 08 | CC CC CC CC | AA BB CC DD | AF FE
 ```
 
 > respone
 
 ```
-00 02 04 00 00 00 00 04 00 | CC CC CC CC | AF FE
+00 02 04 00 00 00 00 00 04 | CC CC CC CC | AF FE
 ```
 
 > repsonse codes
