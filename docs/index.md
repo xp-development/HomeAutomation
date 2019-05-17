@@ -166,7 +166,7 @@ sample (00 02 01 00 00 18 00 00 00 | CC CC CC CC | 10 00 AA BB CC DD 11 00 22 33
 > respone (data: 1 byte client room identification + unique room identifier if response code is 00 00)
 
 ```
-00 02 00 00 00 0A 00 00 00 | CC CC CC CC | AA BB CC DD | AF FE
+00 02 00 00 00 0B 00 00 00 | CC CC CC CC | 0A AA BB CC DD | AF FE
 ```
 
 > repsonse codes
