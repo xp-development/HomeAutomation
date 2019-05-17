@@ -157,13 +157,13 @@ sample (00 02 01 00 00 18 00 00 00 | CC CC CC CC | 10 00 AA BB CC DD 11 00 22 33
 ### Rooms
 #### create room
 
-> request (data: living room)
+> request (data: 1 byte client room identification + living room)
 
 ```
-00 02 00 00 00 1C 00 | CC CC CC CC | 16 00 6C 00 69 00 76 00 69 00 6E 00 67 00 20 00 72 00 6F 00 6F 00 6D 00 | AF FE
+00 02 00 00 00 1D 00 | CC CC CC CC | 0A 16 00 6C 00 69 00 76 00 69 00 6E 00 67 00 20 00 72 00 6F 00 6F 00 6D 00 | AF FE
 ```
 
-> respone (data: unique room identifier if response code is 00 00)
+> respone (data: 1 byte client room identification + unique room identifier if response code is 00 00)
 
 ```
 00 02 00 00 00 0A 00 00 00 | CC CC CC CC | AA BB CC DD | AF FE
