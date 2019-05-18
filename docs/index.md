@@ -186,7 +186,7 @@ sample (00 02 01 00 00 18 00 00 00 | CC CC CC CC | 10 00 AA BB CC DD 11 00 22 33
 > respone (data: gets 4 unique identifier, for each room one identifier if response code is 00 00)
 
 ```
-00 02 01 00 00 18 00 00 00 | CC CC CC CC | 10 00 AA BB CC DD 11 00 22 33 44 55 66 77 99 88 77 66 | AF FE
+00 02 01 00 00 18 00 00 00 | CC CC CC CC | 04 00 AA BB CC DD 11 00 22 33 44 55 66 77 99 88 77 66 | AF FE
 ```
 
 > repsonse codes
