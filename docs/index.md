@@ -241,10 +241,10 @@ sample (00 02 01 00 00 18 00 00 00 | CC CC CC CC | 10 00 AA BB CC DD 11 00 22 33
 00 02 04 00 00 08 00 | CC CC CC CC | AA BB CC DD | AF FE
 ```
 
-> respone
+> respone (data: unique room identifier)
 
 ```
-00 02 04 00 00 06 00 00 00 | CC CC CC CC | AF FE
+00 02 04 00 00 0A 00 00 00 | CC CC CC CC | AA BB CC DD | AF FE
 ```
 
 > repsonse codes
