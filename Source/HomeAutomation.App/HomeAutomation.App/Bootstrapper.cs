@@ -3,10 +3,8 @@ using HomeAutomation.App.Communication;
 using HomeAutomation.App.DependencyInjection;
 using HomeAutomation.App.Events;
 using HomeAutomation.App.Views.Shell;
-using HomeAutomation.Protocols.App.v0.RequestBuilders;
-using HomeAutomation.Protocols.App.v0.RequestBuilders.Rooms;
-using HomeAutomation.Protocols.App.v0.ResponseParsers;
-using HomeAutomation.Protocols.App.v0.ResponseParsers.Rooms;
+using HomeAutomation.Protocols.App.v0;
+using HomeAutomation.Protocols.App.v0.DataConverters;
 
 namespace HomeAutomation.App
 {
@@ -31,17 +29,8 @@ namespace HomeAutomation.App
 
       ConfigureApplicationDependencies();
       ConfigureProtocolDependencies();
-      RegisterProtocolResponseDataParsers();
 
       StaticServiceLocator.SetCurrent(_container.Locate<IServiceLocator>());
-    }
-
-    private void RegisterProtocolResponseDataParsers()
-    {
-      var dataParserFactory = _container.Locate<IResponseDataParserFactory>();
-      dataParserFactory.Register<ConnectResponseDataParser>();
-      dataParserFactory.Register<GetAllRoomsResponseDataParser>();
-      dataParserFactory.Register<GetRoomDescriptionResponseDataParser>();
     }
 
     private void ConfigureApplicationDependencies()
@@ -55,12 +44,14 @@ namespace HomeAutomation.App
 
     private void ConfigureProtocolDependencies()
     {
-      _container.Configure(c => c.Export<GetAllRoomsRequestBuilder>().As<IGetAllRoomsRequestBuilder>().Lifestyle.Singleton());
-      _container.Configure(c => c.Export<GetRoomDescriptionRequestBuilder>().As<IGetRoomDescriptionRequestBuilder>().Lifestyle.Singleton());
-      _container.Configure(c => c.Export<Counter>().As<ICounter>().Lifestyle.Singleton());
       _container.Configure(c => c.Export<ConnectionIdentification>().As<IConnectionIdentification>().Lifestyle.Singleton());
       _container.Configure(c => c.Export<ResponseParser>().As<IResponseParser>().Lifestyle.Singleton());
-      _container.Configure(c => c.Export<ResponseDataParserFactory>().As<IResponseDataParserFactory>().Lifestyle.Singleton());
+      _container.Configure(c => c.Export<RequestBuilder>().As<IRequestBuilder>().Lifestyle.Singleton());
+      _container.Configure(c => c.Export<DataConverterDispatcher>().As<IDataConverterDispatcher>().Lifestyle.Singleton());
+      _container.Configure(c => c.Export<ByteConverter>().As<IDataConverter>().Lifestyle.Singleton());
+      _container.Configure(c => c.Export<Int32ArrayConverter>().As<IDataConverter>().Lifestyle.Singleton());
+      _container.Configure(c => c.Export<Int32Converter>().As<IDataConverter>().Lifestyle.Singleton());
+      _container.Configure(c => c.Export<StringConverter>().As<IDataConverter>().Lifestyle.Singleton());
     }
   }
 }

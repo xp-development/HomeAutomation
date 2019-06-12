@@ -78,22 +78,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="_v0\_ResponseBuilderDispatcher\Build.cs" />
-    <Compile Include="_v0\_RequestBuilders\_ConnectRequestBuilder\Build.cs" />
-    <Compile Include="_v0\_RequestBuilders\_Counter\GetNext.cs" />
-    <Compile Include="_v0\_RequestBuilders\_Rooms\_GetRoomDescriptionRequestBuilder\Build.cs" />
-    <Compile Include="_v0\_RequestBuilders\_Rooms\_GetAllRoomsRequestBuilder\Build.cs" />
-    <Compile Include="_v0\_RequestParsers\_ConnectRequestDataParser\Parse.cs" />
-    <Compile Include="_v0\_RequestParsers\_RequestDataParserFactory\TryCreate.cs" />
-    <Compile Include="_v0\_RequestParsers\_RequestParser\Parse.cs" />
-    <Compile Include="_v0\_ResponseBuilders\_CommonResponseCodeResponseBuilder\Build.cs" />
-    <Compile Include="_v0\_ResponseBuilders\_ConnectResponseBuilder\Build.cs" />
-    <Compile Include="_v0\_ResponseParsers\_ConnectResponseDataParser\Parse.cs" />
-    <Compile Include="_v0\_ResponseParsers\_ResponseDataParserFactory\ResponseDataParserForUnitTest.cs" />
-    <Compile Include="_v0\_ResponseParsers\_ResponseDataParserFactory\TryCreate.cs" />
-    <Compile Include="_v0\_ResponseParsers\_ResponseParser\Parse.cs" />
-    <Compile Include="_v0\_ResponseParsers\_Rooms\_GetRoomDescriptionResponseDataParser\Parse.cs" />
-    <Compile Include="_v0\_ResponseParsers\_Rooms\_GetAllRoomsResponseDataParser\Parse.cs" />
+    <Compile Include="_v0\_DataConverters\_ByteConverter\ConvertBack.cs" />
+    <Compile Include="_v0\_DataConverters\_DataConverterDispatcher\ConvertBack.cs" />
+    <Compile Include="_v0\_DataConverters\_Int32ArrayConverter\Convert.cs" />
+    <Compile Include="_v0\_DataConverters\_Int32ArrayConverter\ConvertBack.cs" />
+    <Compile Include="_v0\_DataConverters\_Int32Converter\Convert.cs" />
+    <Compile Include="_v0\_DataConverters\_DataConverterDispatcher\Convert.cs" />
+    <Compile Include="_v0\_DataConverters\_Int32Converter\ConvertBack.cs" />
+    <Compile Include="_v0\_DataConverters\_StringConverter\Convert.cs" />
+    <Compile Include="_v0\_DataConverters\_ByteConverter\Convert.cs" />
+    <Compile Include="_v0\_DataConverters\_StringConverter\ConvertBack.cs" />
+    <Compile Include="_v0\_RequestBuilder\Build.cs" />
+    <Compile Include="_v0\_RequestParser\Parse.cs" />
+    <Compile Include="_v0\_CommonResponseCodeResponseBuilder\Build.cs" />
+    <Compile Include="_v0\_ResponseBuilder\Build.cs" />
+    <Compile Include="_v0\_ResponseParser\Parse.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HomeAutomation.Protocols.App\HomeAutomation.Protocols.App.csproj">
