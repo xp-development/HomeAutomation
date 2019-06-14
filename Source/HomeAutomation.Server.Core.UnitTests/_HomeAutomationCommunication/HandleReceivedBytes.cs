@@ -11,6 +11,7 @@ namespace HomeAutomation.Server.Core.UnitTests._HomeAutomationCommunication
     private readonly Mock<IRequestParser> _requestParserMock;
     private readonly Mock<IResponseBuilder> _responseBuilderMock;
     private readonly Mock<IServiceLocator> _serviceLocatorMock;
+    private readonly Mock<IConnectionHandler> _connectionHandlerMock;
     private readonly Mock<ICommonResponseCodeResponseBuilder> _commonResponseCodeResponseBuilderMock;
 
     public HandleReceivedBytes()
@@ -20,6 +21,7 @@ namespace HomeAutomation.Server.Core.UnitTests._HomeAutomationCommunication
       _serviceLocatorMock = new Mock<IServiceLocator>();
       _serviceLocatorMock.Setup(x => x.Locate(It.IsAny<Type>())).Callback<Type>(x => Activator.CreateInstance(x));
       _commonResponseCodeResponseBuilderMock = new Mock<ICommonResponseCodeResponseBuilder>();
+      _connectionHandlerMock = new Mock<IConnectionHandler>();
     }
 
     [Theory]
@@ -50,6 +52,7 @@ namespace HomeAutomation.Server.Core.UnitTests._HomeAutomationCommunication
     public void ShouldBuildResponseWithCommonResponseCodeNotConnected()
     {
       _requestParserMock.Setup(x => x.Parse(It.IsAny<byte[]>())).Returns(new GetAllRoomsDataRequest());
+      _connectionHandlerMock.Setup(x => x.IsConnected(It.IsAny<byte[]>())).Returns(false);
       var communication = CreateHomeAutomationCommunication();
 
       communication.HandleReceivedBytes(new byte[] {0x01, 0x02, 0x03, 0x04});
@@ -59,7 +62,7 @@ namespace HomeAutomation.Server.Core.UnitTests._HomeAutomationCommunication
 
     private HomeAutomationCommunication CreateHomeAutomationCommunication()
     {
-      return new HomeAutomationCommunication(_requestParserMock.Object, _responseBuilderMock.Object, _commonResponseCodeResponseBuilderMock.Object, _serviceLocatorMock.Object);
+      return new HomeAutomationCommunication(_requestParserMock.Object, _responseBuilderMock.Object, _commonResponseCodeResponseBuilderMock.Object, _serviceLocatorMock.Object, _connectionHandlerMock.Object);
     }
   }
 }

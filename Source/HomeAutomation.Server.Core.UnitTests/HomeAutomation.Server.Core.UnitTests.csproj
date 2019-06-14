@@ -76,6 +76,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="_ConnectionHandler\IsConnected.cs" />
+    <Compile Include="_ConnectionHandler\NewConnection.cs" />
     <Compile Include="_HomeAutomationCommunication\HandleReceivedBytes.cs" />
     <Compile Include="_RequestHandlers\_ConnectRequestHandler\Handle.cs" />
   </ItemGroup>

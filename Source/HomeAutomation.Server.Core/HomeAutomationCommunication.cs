@@ -14,14 +14,18 @@ namespace HomeAutomation.Server.Core
     private readonly ICommonResponseCodeResponseBuilder _commonResponseCodeResponseBuilder;
     private readonly IDictionary<RequestTypeAttribute, Type> _requestHandlerTypes;
     private readonly IServiceLocator _serviceLocator;
+    private readonly IConnectionHandler _connectionHandler;
 
-    public HomeAutomationCommunication(IRequestParser requestParser, IResponseBuilder responseBuilder, ICommonResponseCodeResponseBuilder commonResponseCodeResponseBuilder, IServiceLocator serviceLocator)
+    public HomeAutomationCommunication(IRequestParser requestParser, IResponseBuilder responseBuilder,
+      ICommonResponseCodeResponseBuilder commonResponseCodeResponseBuilder, IServiceLocator serviceLocator,
+      IConnectionHandler connectionHandler)
     {
       _requestParser = requestParser;
       _responseBuilder = responseBuilder;
       _requestHandlerTypes = GetRequestHandlerTypes();
       _commonResponseCodeResponseBuilder = commonResponseCodeResponseBuilder;
       _serviceLocator = serviceLocator;
+      _connectionHandler = connectionHandler;
     }
 
     public byte[] HandleReceivedBytes(byte[] receivedBytes)
@@ -29,7 +33,7 @@ namespace HomeAutomation.Server.Core
       try
       {
         var request = _requestParser.Parse(receivedBytes);
-        if (request is IConnectionRequiredRequest)
+        if (request is IConnectionRequiredRequest connectionRequiredRequest && !_connectionHandler.IsConnected(new[] { connectionRequiredRequest.ConnectionIdentifier0, connectionRequiredRequest.ConnectionIdentifier1, connectionRequiredRequest.ConnectionIdentifier2, connectionRequiredRequest.ConnectionIdentifier3}))
         {
           return _commonResponseCodeResponseBuilder.Build(receivedBytes, CommonResponseCode.NotConnected);
         }

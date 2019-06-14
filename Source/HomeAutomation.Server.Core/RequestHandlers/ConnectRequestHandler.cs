@@ -1,5 +1,4 @@
-﻿using System;
-using HomeAutomation.Protocols.App.v0;
+﻿using HomeAutomation.Protocols.App.v0;
 using HomeAutomation.Protocols.App.v0.Requests;
 using HomeAutomation.Protocols.App.v0.Responses;
 
@@ -8,13 +7,16 @@ namespace HomeAutomation.Server.Core.RequestHandlers
   [RequestType(1, 0, 0, 0)]
   public class ConnectRequestHandler : IRequestHandler
   {
-    private static uint _currentIdentifier;
+    private readonly IConnectionHandler _connectionHandler;
+
+    public ConnectRequestHandler(IConnectionHandler connectionHandler)
+    {
+      _connectionHandler = connectionHandler;
+    }
 
     public IResponse Handle(IRequest request)
     {
-      var identifier = ++_currentIdentifier;
-
-      var bytes = BitConverter.GetBytes(identifier);
+      var bytes = _connectionHandler.NewConnection();
 
       return new ConnectDataResponse
       {
@@ -23,11 +25,6 @@ namespace HomeAutomation.Server.Core.RequestHandlers
         ConnectionIdentifier2 = bytes[2],
         ConnectionIdentifier3 = bytes[3]
       };
-    }
-
-    public static void Reset()
-    {
-      _currentIdentifier = 0;
     }
   }
 }
