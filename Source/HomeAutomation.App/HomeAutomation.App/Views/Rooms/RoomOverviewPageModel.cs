@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using HomeAutomation.App.Communication;
 using HomeAutomation.App.Models;
 using HomeAutomation.App.Mvvm;
-using HomeAutomation.Protocols.App.v0;
 using HomeAutomation.Protocols.App.v0.Requests.Rooms;
 using HomeAutomation.Protocols.App.v0.Responses;
 using HomeAutomation.Protocols.App.v0.Responses.Rooms;

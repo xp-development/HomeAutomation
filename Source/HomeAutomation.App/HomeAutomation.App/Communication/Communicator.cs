@@ -54,10 +54,8 @@ namespace HomeAutomation.App.Communication
         while (_tcpClient.Connected)
         {
           var dataBytes = await _tcpClient.ReadAsync();
-
           var response = _responseParser.Parse(dataBytes);
-//          Console.WriteLine(response.ResponseCode0 + "-" + response.ResponseCode1 + "-" + response.RequestType0 + "-" + response.RequestType1);
-//          await stream.ReadAsync();
+          ReceiveData?.Invoke(response);
         }
       });
     }
