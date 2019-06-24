@@ -1,6 +1,6 @@
 ﻿namespace HomeAutomation.Protocols.App.v0.Responses
 {
-  public class ConnectionIdentificationResponseBase : ResponseCodeResponseBase
+  public class ConnectionIdentificationResponseBase : ResponseBase
   {
     public byte ConnectionIdentifier0 { get; set; }
     public byte ConnectionIdentifier1 { get; set; }

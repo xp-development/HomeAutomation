@@ -2,5 +2,6 @@
 {
   public interface IRequest
   {
+    ushort Counter { get; set; }
   }
 }

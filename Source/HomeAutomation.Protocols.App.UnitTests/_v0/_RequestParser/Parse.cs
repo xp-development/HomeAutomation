@@ -16,9 +16,10 @@ namespace HomeAutomation.Protocols.App.UnitTests._v0._RequestParser
     {
       var requestParser = CreateRequestParser();
 
-      var request = requestParser.Parse(new byte[] {0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xD1});
+      var request = requestParser.Parse(new byte[] {0x00, 0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x03, 0x00, 0xC0, 0x84});
 
       request.Should().BeOfType<ConnectDataRequest>();
+      request.Counter.Should().Be(3);
     }
 
     [Fact]
@@ -26,9 +27,10 @@ namespace HomeAutomation.Protocols.App.UnitTests._v0._RequestParser
     {
       var requestParser = CreateRequestParser();
 
-      var request = requestParser.Parse(new byte[] { 0x00, 0x02, 0x00, 0x00, 0x00, 0x1D, 0x00, 0xCC, 0xCC, 0xCC, 0xCC, 0xBB, 0x16, 0x00, 0x6C, 0x00, 0x69, 0x00, 0x76, 0x00, 0x69, 0x00, 0x6E, 0x00, 0x67, 0x00, 0x20, 0x00, 0x72, 0x00, 0x6F, 0x00, 0x6F, 0x00, 0x6D, 0x00, 0x49, 0x39 });
+      var request = requestParser.Parse(new byte[] { 0x00, 0x02, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x09, 0x00, 0xCC, 0xCC, 0xCC, 0xCC, 0xBB, 0x16, 0x00, 0x6C, 0x00, 0x69, 0x00, 0x76, 0x00, 0x69, 0x00, 0x6E, 0x00, 0x67, 0x00, 0x20, 0x00, 0x72, 0x00, 0x6F, 0x00, 0x6F, 0x00, 0x6D, 0x00, 0xCC, 0x56 });
 
       request.Should().BeOfType<CreateRoomDataRequest>();
+      request.Counter.Should().Be(9);
       ((CreateRoomDataRequest) request).ConnectionIdentifier0.Should().Be(0xCC);
       ((CreateRoomDataRequest) request).ConnectionIdentifier1.Should().Be(0xCC);
       ((CreateRoomDataRequest) request).ConnectionIdentifier2.Should().Be(0xCC);
@@ -42,9 +44,10 @@ namespace HomeAutomation.Protocols.App.UnitTests._v0._RequestParser
     {
       var requestParser = CreateRequestParser();
 
-      var request = requestParser.Parse(new byte[] { 0x00, 0x02, 0x04, 0x00, 0x00, 0x08, 0x00, 0xCC, 0xCC, 0xCC, 0xCC, 0x42, 0x01, 0x00, 0x00, 0xC8, 0xC1 });
+      var request = requestParser.Parse(new byte[] { 0x00, 0x02, 0x04, 0x00, 0x00, 0x0A, 0x00, 0x06, 0x00, 0xCC, 0xCC, 0xCC, 0xCC, 0x42, 0x01, 0x00, 0x00, 0x39, 0x08 });
 
       request.Should().BeOfType<DeleteRoomDataRequest>();
+      request.Counter.Should().Be(0x06);
       ((DeleteRoomDataRequest) request).ConnectionIdentifier0.Should().Be(0xCC);
       ((DeleteRoomDataRequest) request).ConnectionIdentifier1.Should().Be(0xCC);
       ((DeleteRoomDataRequest) request).ConnectionIdentifier2.Should().Be(0xCC);
@@ -92,7 +95,7 @@ namespace HomeAutomation.Protocols.App.UnitTests._v0._RequestParser
 
     private static RequestParser CreateRequestParser()
     {
-      var dataConverters = new List<IDataConverter> {new StringConverter(), new ByteConverter(), new Int32Converter()};
+      var dataConverters = new List<IDataConverter> {new StringConverter(), new ByteConverter(), new Int32Converter(), new UInt16Converter()};
       return new RequestParser(new DataConverterDispatcher(dataConverters));
     }
   }

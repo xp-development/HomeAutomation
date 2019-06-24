@@ -2,6 +2,7 @@
 {
   public class ConnectionRequiredRequestBase : IConnectionRequiredRequest
   {
+    public ushort Counter { get; set; }
     public byte ConnectionIdentifier0 { get; set; }
     public byte ConnectionIdentifier1 { get; set; }
     public byte ConnectionIdentifier2 { get; set; }

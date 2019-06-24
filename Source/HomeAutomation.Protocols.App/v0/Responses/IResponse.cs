@@ -2,6 +2,7 @@
 {
   public interface IResponse
   {
+    ushort Counter { get; set; }
     byte ResponseCode0 { get; set; }
     byte ResponseCode1 { get; set; }
   }

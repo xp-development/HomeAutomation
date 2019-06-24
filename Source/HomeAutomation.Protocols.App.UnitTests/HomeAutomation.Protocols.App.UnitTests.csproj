@@ -82,6 +82,8 @@
     <Compile Include="_v0\_DataConverters\_DataConverterDispatcher\ConvertBack.cs" />
     <Compile Include="_v0\_DataConverters\_Int32ArrayConverter\Convert.cs" />
     <Compile Include="_v0\_DataConverters\_Int32ArrayConverter\ConvertBack.cs" />
+    <Compile Include="_v0\_DataConverters\_UInt16Converter\Convert.cs" />
+    <Compile Include="_v0\_DataConverters\_UInt16Converter\ConvertBack.cs" />
     <Compile Include="_v0\_DataConverters\_Int32Converter\Convert.cs" />
     <Compile Include="_v0\_DataConverters\_DataConverterDispatcher\Convert.cs" />
     <Compile Include="_v0\_DataConverters\_Int32Converter\ConvertBack.cs" />

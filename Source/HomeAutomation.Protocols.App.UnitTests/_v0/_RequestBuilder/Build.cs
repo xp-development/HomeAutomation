@@ -15,17 +15,19 @@ namespace HomeAutomation.Protocols.App.UnitTests._v0._RequestBuilder
     {
       var builder = CreateRequestBuilder();
 
-      var bytes = builder.Build(new ConnectDataRequest());
+      var bytes = builder.Build(new ConnectDataRequest { Counter = 3 });
 
       bytes[0].Should().Be(0x00, "protocol version");
       bytes[1].Should().Be(0x01, "request type 0");
       bytes[2].Should().Be(0x00, "request type 1");
       bytes[3].Should().Be(0x00, "request type 2");
       bytes[4].Should().Be(0x00, "request type 3");
-      bytes[5].Should().Be(0x00, "data length");
+      bytes[5].Should().Be(0x02, "data length");
       bytes[6].Should().Be(0x00, "data length");
-      bytes[7].Should().Be(0x01, "crc");
-      bytes[8].Should().Be(0xD1, "crc");
+      bytes[7].Should().Be(0x03, "counter");
+      bytes[8].Should().Be(0x00, "counter");
+      bytes[9].Should().Be(0xC0, "crc");
+      bytes[10].Should().Be(0x84, "crc");
     }
 
     [Fact]
@@ -33,21 +35,23 @@ namespace HomeAutomation.Protocols.App.UnitTests._v0._RequestBuilder
     {
       var builder = CreateRequestBuilder();
 
-      var bytes = builder.Build(new GetAllRoomsDataRequest { ConnectionIdentifier0 = 0xAA , ConnectionIdentifier1 = 0xBB, ConnectionIdentifier2 = 0xCC, ConnectionIdentifier3 = 0xDD });
+      var bytes = builder.Build(new GetAllRoomsDataRequest { ConnectionIdentifier0 = 0xAA , ConnectionIdentifier1 = 0xBB, ConnectionIdentifier2 = 0xCC, ConnectionIdentifier3 = 0xDD, Counter = 3 });
 
       bytes[0].Should().Be(0x00, "protocol version");
       bytes[1].Should().Be(0x02, "request type 0");
       bytes[2].Should().Be(0x01, "request type 1");
       bytes[3].Should().Be(0x00, "request type 2");
       bytes[4].Should().Be(0x00, "request type 3");
-      bytes[5].Should().Be(0x04, "data length");
+      bytes[5].Should().Be(0x06, "data length");
       bytes[6].Should().Be(0x00, "data length");
-      bytes[7].Should().Be(0xAA, "connection identifier 0");
-      bytes[8].Should().Be(0xBB, "connection identifier 1");
-      bytes[9].Should().Be(0xCC, "connection identifier 2");
-      bytes[10].Should().Be(0xDD, "connection identifier 3");
-      bytes[11].Should().Be(0x69, "crc");
-      bytes[12].Should().Be(0x7A, "crc");
+      bytes[7].Should().Be(0x03, "counter");
+      bytes[8].Should().Be(0x00, "counter");
+      bytes[9].Should().Be(0xAA, "connection identifier 0");
+      bytes[10].Should().Be(0xBB, "connection identifier 1");
+      bytes[11].Should().Be(0xCC, "connection identifier 2");
+      bytes[12].Should().Be(0xDD, "connection identifier 3");
+      bytes[13].Should().Be(0xB9, "crc");
+      bytes[14].Should().Be(0x86, "crc");
     }
 
     [Fact]
@@ -55,25 +59,27 @@ namespace HomeAutomation.Protocols.App.UnitTests._v0._RequestBuilder
     {
       var builder = CreateRequestBuilder();
 
-      var bytes = builder.Build(new DeleteRoomDataRequest { RoomIdentifier = 287454020, ConnectionIdentifier0 = 0xAA, ConnectionIdentifier1 = 0xBB, ConnectionIdentifier2 = 0xCC, ConnectionIdentifier3 = 0xDD });
+      var bytes = builder.Build(new DeleteRoomDataRequest { RoomIdentifier = 287454020, ConnectionIdentifier0 = 0xAA, ConnectionIdentifier1 = 0xBB, ConnectionIdentifier2 = 0xCC, ConnectionIdentifier3 = 0xDD, Counter = 3 });
 
       bytes[0].Should().Be(0x00, "protocol version");
       bytes[1].Should().Be(0x02, "request type 0");
       bytes[2].Should().Be(0x04, "request type 1");
       bytes[3].Should().Be(0x00, "request type 2");
       bytes[4].Should().Be(0x00, "request type 3");
-      bytes[5].Should().Be(0x08, "data length");
+      bytes[5].Should().Be(0x0A, "data length");
       bytes[6].Should().Be(0x00, "data length");
-      bytes[7].Should().Be(0xAA, "connection identifier 0");
-      bytes[8].Should().Be(0xBB, "connection identifier 1");
-      bytes[9].Should().Be(0xCC, "connection identifier 2");
-      bytes[10].Should().Be(0xDD, "connection identifier 3");
-      bytes[11].Should().Be(0x44, "unique room identifier 0");
-      bytes[12].Should().Be(0x33, "unique room identifier 1");
-      bytes[13].Should().Be(0x22, "unique room identifier 2");
-      bytes[14].Should().Be(0x11, "unique room identifier 3");
-      bytes[15].Should().Be(0xCC, "crc");
-      bytes[16].Should().Be(0x2C, "crc");
+      bytes[7].Should().Be(0x03, "counter");
+      bytes[8].Should().Be(0x00, "counter");
+      bytes[9].Should().Be(0xAA, "connection identifier 0");
+      bytes[10].Should().Be(0xBB, "connection identifier 1");
+      bytes[11].Should().Be(0xCC, "connection identifier 2");
+      bytes[12].Should().Be(0xDD, "connection identifier 3");
+      bytes[13].Should().Be(0x44, "unique room identifier 0");
+      bytes[14].Should().Be(0x33, "unique room identifier 1");
+      bytes[15].Should().Be(0x22, "unique room identifier 2");
+      bytes[16].Should().Be(0x11, "unique room identifier 3");
+      bytes[17].Should().Be(0x2D, "crc");
+      bytes[18].Should().Be(0xF5, "crc");
     }
 
     private static RequestBuilder CreateRequestBuilder()
@@ -82,7 +88,8 @@ namespace HomeAutomation.Protocols.App.UnitTests._v0._RequestBuilder
       {
         new ByteConverter(),
         new StringConverter(),
-        new Int32Converter()
+        new Int32Converter(),
+        new UInt16Converter()
       }));
     }
   }

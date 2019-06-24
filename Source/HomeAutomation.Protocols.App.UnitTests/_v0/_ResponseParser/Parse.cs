@@ -3,7 +3,6 @@ using FluentAssertions;
 using HomeAutomation.Protocols.App.v0;
 using HomeAutomation.Protocols.App.v0.DataConverters;
 using HomeAutomation.Protocols.App.v0.Responses;
-using Moq;
 using Xunit;
 
 namespace HomeAutomation.Protocols.App.UnitTests._v0._ResponseParser
@@ -15,10 +14,11 @@ namespace HomeAutomation.Protocols.App.UnitTests._v0._ResponseParser
     {
       var parser = CreateResponseParser();
 
-      var response = parser.Parse(new byte[] { 0x00, 0x01, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0xAC, 0xBC, 0xCC, 0xDC, 0xC9, 0xC4 });
+      var response = parser.Parse(new byte[] { 0x00, 0x01, 0x00, 0x00, 0x00, 0x08, 0x00, 0x04, 0x00, 0x00, 0x00, 0xAC, 0xBC, 0xCC, 0xDC, 0x34, 0xF5 });
 
       response.ResponseCode0.Should().Be(0x00);
       response.ResponseCode1.Should().Be(0x00);
+      response.Counter.Should().Be(4);
       response.Should().BeOfType<ConnectDataResponse>();
       ((ConnectDataResponse)response).ConnectionIdentifier0.Should().Be(0xAC);
       ((ConnectDataResponse)response).ConnectionIdentifier1.Should().Be(0xBC);
@@ -67,7 +67,7 @@ namespace HomeAutomation.Protocols.App.UnitTests._v0._ResponseParser
     {
       var parser = CreateResponseParser();
 
-      var response = parser.Parse(new byte[] { 0x00, 0x01, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0xAC, 0xBC, 0xCC, 0xDC, 0xAf, 0xFE });
+      var response = parser.Parse(new byte[] { 0x00, 0x01, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0xAC, 0xBC, 0xCC, 0xDC, 0xAf, 0xFE });
 
       response.ResponseCode0.Should().Be(0xFF);
       response.ResponseCode1.Should().Be(0x01);
@@ -75,7 +75,7 @@ namespace HomeAutomation.Protocols.App.UnitTests._v0._ResponseParser
 
     private static ResponseParser CreateResponseParser()
     {
-      var dataConverters = new List<IDataConverter> { new StringConverter(), new ByteConverter(), new Int32Converter() };
+      var dataConverters = new List<IDataConverter> { new StringConverter(), new ByteConverter(), new Int32Converter(), new UInt16Converter() };
       return new ResponseParser(new DataConverterDispatcher(dataConverters));
     }
   }

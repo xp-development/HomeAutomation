@@ -10,6 +10,7 @@ namespace HomeAutomation.Protocols.App.v0
       ResponseCode1 = responseCode1;
     }
 
+    public ushort Counter { get; set; }
     public byte ResponseCode0 { get; set; }
     public byte ResponseCode1 { get; set; }
   }
