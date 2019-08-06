@@ -15,6 +15,9 @@ namespace HomeAutomation.App.Communication
     private readonly IRequestBuilder _requestBuilder;
     private readonly IUserSettings _userSettings;
     private readonly IConnectionIdentification _connectionIdentification;
+    private ushort _counter;
+
+    public event Action<IResponse> ReceiveData;
 
     public Communicator(IConnectionIdentification connectionIdentification, IUserSettings userSettings, ITcpClient tcpClient, IResponseParser responseParser, IRequestBuilder requestBuilder)
     {
@@ -30,7 +33,6 @@ namespace HomeAutomation.App.Communication
       if (!_tcpClient.Connected)
       {
         await _tcpClient.ConnectAsync(IPAddress.Parse(_userSettings.GetString("ServerIP")), _userSettings.GetInt32("ServerPort"));
-        StartReceivingData();
       }
 
       if (request is IConnectionRequiredRequest connectionRequiredRequest)
@@ -41,23 +43,18 @@ namespace HomeAutomation.App.Communication
         connectionRequiredRequest.ConnectionIdentifier3 = _connectionIdentification.Current[3];
       }
 
-      var requestBytes = _requestBuilder.Build(request);
-      await _tcpClient.WriteAsync(requestBytes);
-    }
+      request.Counter = ++_counter;
+      await _tcpClient.WriteAsync(_requestBuilder.Build(request));
 
-    public event Action<IResponse> ReceiveData;
-
-    private void StartReceivingData()
-    {
-      Task.Run(async () =>
+      var dataBytes = await _tcpClient.ReadAsync();
+      var response = _responseParser.Parse(dataBytes);
+      if (response.IsNotConnectedResponse())
       {
-        while (_tcpClient.Connected)
-        {
-          var dataBytes = await _tcpClient.ReadAsync();
-          var response = _responseParser.Parse(dataBytes);
-          ReceiveData?.Invoke(response);
-        }
-      });
+        await SendAsync(new ConnectDataRequest());
+        await SendAsync(request);
+      }
+
+      ReceiveData?.Invoke(response);
     }
   }
 }

@@ -5,6 +5,7 @@ using HomeAutomation.App.Events;
 using HomeAutomation.App.Views.Shell;
 using HomeAutomation.Protocols.App.v0;
 using HomeAutomation.Protocols.App.v0.DataConverters;
+using HomeAutomation.Protocols.App.v0.Responses;
 
 namespace HomeAutomation.App
 {
@@ -15,12 +16,8 @@ namespace HomeAutomation.App
     public MainView Run()
     {
       ConfigureDependencies();
+      HandleCommunication();
       return RunApp();
-    }
-
-    private MainView RunApp()
-    {
-      return _container.Locate<MainView>();
     }
 
     private void ConfigureDependencies()
@@ -51,7 +48,26 @@ namespace HomeAutomation.App
       _container.Configure(c => c.Export<ByteConverter>().As<IDataConverter>().Lifestyle.Singleton());
       _container.Configure(c => c.Export<Int32ArrayConverter>().As<IDataConverter>().Lifestyle.Singleton());
       _container.Configure(c => c.Export<Int32Converter>().As<IDataConverter>().Lifestyle.Singleton());
+      _container.Configure(c => c.Export<UInt16Converter>().As<IDataConverter>().Lifestyle.Singleton());
       _container.Configure(c => c.Export<StringConverter>().As<IDataConverter>().Lifestyle.Singleton());
+    }
+
+    private void HandleCommunication()
+    {
+      _container.Locate<ICommunicator>().ReceiveData += OnReceiveData;
+    }
+
+    private void OnReceiveData(IResponse response)
+    {
+      if (response is ConnectDataResponse connectDataResponse)
+      {
+        _container.Locate<IConnectionIdentification>().Current = new[] { connectDataResponse.ConnectionIdentifier0, connectDataResponse.ConnectionIdentifier1, connectDataResponse.ConnectionIdentifier2, connectDataResponse.ConnectionIdentifier3 };
+      }
+    }
+
+    private MainView RunApp()
+    {
+      return _container.Locate<MainView>();
     }
   }
 }

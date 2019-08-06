@@ -8,7 +8,7 @@
     {
       get
       {
-        if (_current == null || _current.Length < 5)
+        if (_current == null || _current.Length < 4)
         {
           return new byte[] { 0x00, 0x00, 0x00, 0x00 };
         }

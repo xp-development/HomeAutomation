@@ -2,6 +2,6 @@
 {
   public interface IConnectionIdentification
   {
-    byte[] Current { get; }
+    byte[] Current { get; set; }
   }
 }

@@ -4,6 +4,11 @@
   {
     public byte ProtocolVersion { get; }
 
+    public NotSupportedProtocolException()
+    {
+      ProtocolVersion = byte.MaxValue;
+    }
+
     public NotSupportedProtocolException(byte protocolVersion)
     {
       ProtocolVersion = protocolVersion;

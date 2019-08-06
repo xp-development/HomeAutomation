@@ -1,4 +1,4 @@
-﻿namespace HomeAutomation.Protocols.App.v0
+﻿namespace HomeAutomation.Protocols.App.v0.Responses
 {
   public enum CommonResponseCode : ushort
   {

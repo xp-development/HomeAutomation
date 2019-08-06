@@ -18,16 +18,13 @@ namespace HomeAutomation.Protocols.App.v0
     public byte[] Build(IResponse response)
     {
       var responseType = response.GetType();
-      var responseTypeAttribute = (RequestTypeAttribute)responseType.GetCustomAttribute(typeof(RequestTypeAttribute));
-      
+
       var responseBytes = new List<byte>();
 
       const byte protocolVersion = 0x00;
       responseBytes.Add(protocolVersion);
-      responseBytes.Add(responseTypeAttribute.RequestType0);
-      responseBytes.Add(responseTypeAttribute.RequestType1);
-      responseBytes.Add(responseTypeAttribute.RequestType2);
-      responseBytes.Add(responseTypeAttribute.RequestType3);
+
+      responseBytes.AddRange(GetResponseTypeBytes(responseType, response));
 
       var dataBytes = new List<byte>();
       foreach (var propertyInfo in responseType.GetAllProperties())
@@ -42,6 +39,25 @@ namespace HomeAutomation.Protocols.App.v0
       responseBytes.Add(checksum[0]);
       responseBytes.Add(checksum[1]);
       return responseBytes.ToArray();
+    }
+
+    private static IEnumerable<byte> GetResponseTypeBytes(MemberInfo responseType, IResponse response)
+    {
+      if (response is IHaveResponseTypeInformation responseTypeInformation)
+      {
+        yield return responseTypeInformation.RequestType0;
+        yield return responseTypeInformation.RequestType1;
+        yield return responseTypeInformation.RequestType2;
+        yield return responseTypeInformation.RequestType3;
+      }
+      else
+      {
+        var responseTypeAttribute = (RequestTypeAttribute) responseType.GetCustomAttribute(typeof(RequestTypeAttribute));
+        yield return responseTypeAttribute.RequestType0;
+        yield return responseTypeAttribute.RequestType1;
+        yield return responseTypeAttribute.RequestType2;
+        yield return responseTypeAttribute.RequestType3;
+      }
     }
   }
 }

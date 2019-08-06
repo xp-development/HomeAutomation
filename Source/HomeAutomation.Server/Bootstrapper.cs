@@ -37,13 +37,14 @@ namespace HomeAutomation.Server
       _container.Configure(c => c.Export<ResponseBuilder>().As<IResponseBuilder>().Lifestyle.Singleton());
       _container.Configure(c => c.Export<TcpServer>().As<ITcpServer>().Lifestyle.Singleton());
       _container.Configure(c => c.Export<HomeAutomationCommunication>().As<IHomeAutomationCommunication>().Lifestyle.Singleton());
-      _container.Configure(c => c.Export<CommonResponseCodeResponseBuilder>().As<ICommonResponseCodeResponseBuilder>().Lifestyle.Singleton());
+      _container.Configure(c => c.Export<ConnectionHandler>().As<IConnectionHandler>().Lifestyle.Singleton());
       _container.Configure(c => c.Export<DataConverterDispatcher>().As<IDataConverterDispatcher>().Lifestyle.Singleton());
       _container.Configure(c => c.Export<ByteConverter>().As<IDataConverter>().Lifestyle.Singleton());
       _container.Configure(c => c.Export<Int32ArrayConverter>().As<IDataConverter>().Lifestyle.Singleton());
       _container.Configure(c => c.Export<Int32Converter>().As<IDataConverter>().Lifestyle.Singleton());
+      _container.Configure(c => c.Export<UInt16Converter>().As<IDataConverter>().Lifestyle.Singleton());
       _container.Configure(c => c.Export<StringConverter>().As<IDataConverter>().Lifestyle.Singleton());
-      _container.Configure(c => c.Export<ServiceLocator>().As<IServiceLocator>().Lifestyle.Singleton());
+      _container.Configure(c => c.ExportInstance(new ServiceLocator(_container)).As<IServiceLocator>().Lifestyle.Singleton());
     }
 
     private void TcpServerOnDataReceived(ITcpServer tcpServer, TcpClient tcpClient, byte[] dataBytes)

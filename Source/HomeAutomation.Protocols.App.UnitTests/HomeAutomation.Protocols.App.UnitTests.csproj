@@ -92,9 +92,10 @@
     <Compile Include="_v0\_DataConverters\_StringConverter\ConvertBack.cs" />
     <Compile Include="_v0\_RequestBuilder\Build.cs" />
     <Compile Include="_v0\_RequestParser\Parse.cs" />
-    <Compile Include="_v0\_CommonResponseCodeResponseBuilder\Build.cs" />
     <Compile Include="_v0\_ResponseBuilder\Build.cs" />
     <Compile Include="_v0\_ResponseParser\Parse.cs" />
+    <Compile Include="_v0\_Responses\_CommonErrorResponse\Ctor.cs" />
+    <Compile Include="_v0\_Responses\_ResponseExtensions\IsNotConnectedResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HomeAutomation.Protocols.App\HomeAutomation.Protocols.App.csproj">

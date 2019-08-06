@@ -107,6 +107,28 @@ namespace HomeAutomation.Protocols.App.UnitTests._v0._ResponseBuilder
       bytes[30].Should().Be(0xB4, "crc");
     }
 
+    [Fact]
+    public void ShouldBuildForCommonResponseCode()
+    {
+      var builder = CreateResponseBuilder();
+
+      var bytes = builder.Build(new CommonErrorResponse(CommonResponseCode.WrongCrc, 3, 2, 1, 0, 0));
+
+      bytes[0].Should().Be(0x00, "protocol version");
+      bytes[1].Should().Be(0x02, "request type 0");
+      bytes[2].Should().Be(0x01, "request type 1");
+      bytes[3].Should().Be(0x00, "request type 2");
+      bytes[4].Should().Be(0x00, "request type 3");
+      bytes[5].Should().Be(0x04, "data length");
+      bytes[6].Should().Be(0x00, "data length");
+      bytes[7].Should().Be(0x03, "counter");
+      bytes[8].Should().Be(0x00, "counter");
+      bytes[9].Should().Be(0xFF, "response code 0");
+      bytes[10].Should().Be(0x01, "response code 1");
+      bytes[11].Should().Be(0x2D, "crc");
+      bytes[12].Should().Be(0xAA, "crc");
+    }
+
     private static ResponseBuilder CreateResponseBuilder()
     {
       var builder = new ResponseBuilder(new DataConverterDispatcher(new List<IDataConverter>
