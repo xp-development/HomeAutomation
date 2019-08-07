@@ -5,7 +5,9 @@ using Grace.DependencyInjection;
 using HomeAutomation.Protocols.App.v0;
 using HomeAutomation.Protocols.App.v0.DataConverters;
 using HomeAutomation.Server.Core;
+using HomeAutomation.Server.Core.DataAccessLayer;
 using MetroLog;
+using Microsoft.EntityFrameworkCore;
 
 namespace HomeAutomation.Server
 {
@@ -18,9 +20,8 @@ namespace HomeAutomation.Server
     {
       _container = CreateContainer();
       ConfigureContainer();
-      var tcpServer = _container.Locate<ITcpServer>();
-      tcpServer.DataReceived += TcpServerOnDataReceived;
-      return tcpServer.StartAsync().AsAsyncOperation();
+      MigrateDatabase();
+      return ConfigureTcpServer();
     }
 
     private static DependencyInjectionContainer CreateContainer()
@@ -47,9 +48,23 @@ namespace HomeAutomation.Server
       _container.Configure(c => c.ExportInstance(new ServiceLocator(_container)).As<IServiceLocator>().Lifestyle.Singleton());
     }
 
+    private void MigrateDatabase()
+    {
+      using (var db = new ServerDatabaseContext())
+      {
+        db.Database.Migrate();
+      }
+    }
+
+    private IAsyncOperation<object> ConfigureTcpServer()
+    {
+      var tcpServer = _container.Locate<ITcpServer>();
+      tcpServer.DataReceived += TcpServerOnDataReceived;
+      return tcpServer.StartAsync().AsAsyncOperation();
+    }
+
     private void TcpServerOnDataReceived(ITcpServer tcpServer, TcpClient tcpClient, byte[] dataBytes)
     {
-      Log.Debug($"Received data {BitConverter.ToString(dataBytes)}.");
       tcpServer.SendData(tcpClient, _container.Locate<IHomeAutomationCommunication>().HandleReceivedBytes(dataBytes));
     }
   }

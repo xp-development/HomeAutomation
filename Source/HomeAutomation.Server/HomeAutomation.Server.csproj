@@ -148,6 +148,10 @@
       <Project>{b5a2adfc-39ba-43ff-ac17-e64944ac3281}</Project>
       <Name>HomeAutomation.Protocols.App</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HomeAutomation.Server.Core.DataAccessLayer\HomeAutomation.Server.Core.DataAccessLayer.csproj">
+      <Project>{92feab63-9bc2-4cf2-83ca-d8cd3e91dec0}</Project>
+      <Name>HomeAutomation.Server.Core.DataAccessLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HomeAutomation.Server.Core\HomeAutomation.Server.Core.csproj">
       <Project>{dcc2f909-4b87-410a-8330-2f857eebf049}</Project>
       <Name>HomeAutomation.Server.Core</Name>

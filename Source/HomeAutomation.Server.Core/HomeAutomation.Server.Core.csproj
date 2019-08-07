@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HomeAutomation.Protocols.App\HomeAutomation.Protocols.App.csproj" />
+    <ProjectReference Include="..\HomeAutomation.Server.Core.DataAccessLayer\HomeAutomation.Server.Core.DataAccessLayer.csproj" />
   </ItemGroup>
 
 </Project>
