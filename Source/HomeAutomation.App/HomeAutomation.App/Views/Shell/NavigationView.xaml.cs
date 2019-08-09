@@ -8,9 +8,9 @@ namespace HomeAutomation.App.Views.Shell
 	{
 	  public ListView NavigationListView => ListView;
 
-    public NavigationView ()
+    public NavigationView()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 		}
 	}
 }

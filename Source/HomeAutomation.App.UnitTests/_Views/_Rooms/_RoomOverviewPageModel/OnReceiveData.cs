@@ -47,8 +47,6 @@ namespace HomeAutomation.App.UnitTests._Views._Rooms._RoomOverviewPageModel
     public async void ShouldSetRoomDescriptionOnReceiveGetRoomDescriptionResponse()
     {
       var communicatorMock = new Mock<ICommunicator>();
-//      var getAllRoomsRequestBuilderMock = new Mock<IGetAllRoomsRequestBuilder>();
-//      var getRoomDescriptionRequestBuilderMock = new Mock<IGetRoomDescriptionRequestBuilder>();
 
       var viewModel = new RoomOverviewPageModel(communicatorMock.Object);
       await viewModel.LoadedAsync(null);
@@ -57,6 +55,22 @@ namespace HomeAutomation.App.UnitTests._Views._Rooms._RoomOverviewPageModel
       communicatorMock.Raise(x => x.ReceiveData += null, new GetRoomDescriptionDataResponse { RoomIdentifier = 1, Description = "living room" });
 
       viewModel.Rooms[0].Description.Should().Be("living room");
+    }
+
+    [Fact]
+    public async void ShouldAddNewRoomOnReceiveCreateRoomDataResponse()
+    {
+      var communicatorMock = new Mock<ICommunicator>();
+
+      var viewModel = new RoomOverviewPageModel(communicatorMock.Object);
+      await viewModel.LoadedAsync(null);
+      await viewModel.NewRoomCommand.Execute(null);
+
+      communicatorMock.Raise(x => x.ReceiveData += null, new CreateRoomDataResponse { RoomIdentifier = 3, ClientRoomIdentifier = 0x01 });
+
+      viewModel.Rooms.Should().HaveCount(1);
+      viewModel.Rooms[0].Id.Should().Be(3);
+      viewModel.Rooms[0].Description.Should().Be("New room");
     }
   }
 }

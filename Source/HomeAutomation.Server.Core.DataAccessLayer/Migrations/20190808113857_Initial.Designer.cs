@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeAutomation.Server.Core.DataAccessLayer.Migrations
 {
     [DbContext(typeof(ServerDatabaseContext))]
-    [Migration("20190807071038_Initial")]
+    [Migration("20190808113857_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,16 +23,13 @@ namespace HomeAutomation.Server.Core.DataAccessLayer.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("CreatedDateTime")
-                        .ValueGeneratedOnAdd();
+                    b.Property<DateTime>("CreatedDateTime");
 
                     b.Property<string>("Description");
 
-                    b.Property<DateTime>("EditedDateTime")
-                        .ValueGeneratedOnAddOrUpdate();
+                    b.Property<DateTime>("EditedDateTime");
 
-                    b.Property<Guid>("Guid")
-                        .ValueGeneratedOnAdd();
+                    b.Property<Guid>("Guid");
 
                     b.HasKey("Id");
 

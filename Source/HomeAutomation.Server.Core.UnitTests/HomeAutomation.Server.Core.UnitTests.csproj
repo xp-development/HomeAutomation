@@ -184,6 +184,8 @@
     <Compile Include="_HomeAutomationCommunication\HandleReceivedBytes.cs" />
     <Compile Include="_RequestHandlers\_ConnectRequestHandler\Handle.cs" />
     <Compile Include="DatabaseTestBase.cs" />
+    <Compile Include="_RequestHandlers\_Rooms\_CreateRoomRequestHandler\Handle.cs" />
+    <Compile Include="_RequestHandlers\_Rooms\_GetRoomDescriptionRequestHandler\Handle.cs" />
     <Compile Include="_RequestHandlers\_Rooms\_GetAllRoomsRequestHandler\Handle.cs" />
   </ItemGroup>
   <ItemGroup>

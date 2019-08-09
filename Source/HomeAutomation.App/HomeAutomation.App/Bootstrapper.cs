@@ -63,6 +63,10 @@ namespace HomeAutomation.App
       {
         _container.Locate<IConnectionIdentification>().Current = new[] { connectDataResponse.ConnectionIdentifier0, connectDataResponse.ConnectionIdentifier1, connectDataResponse.ConnectionIdentifier2, connectDataResponse.ConnectionIdentifier3 };
       }
+      else if(response.ResponseCode0 == 0xFF && response.ResponseCode1 != 0x02)
+      {
+        _container.Locate<IEventAggregator>().PublishAsync(new MessageBoxEvent("Error", response.ResponseCode0.ToString("X") + "-" + response.ResponseCode1.ToString("X"), "OK", "Cancel"));
+      }
     }
 
     private MainView RunApp()

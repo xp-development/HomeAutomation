@@ -8,8 +8,13 @@ namespace HomeAutomation.Server.Core.UnitTests
     protected DatabaseTestBase()
     {
       ServerDatabaseContext.Options = new DbContextOptionsBuilder<ServerDatabaseContext>()
-        .UseInMemoryDatabase(databaseName: "Testing")
+        .UseInMemoryDatabase("Testing")
         .Options;
+
+      using (var context = new ServerDatabaseContext())
+      {
+        context.Database.EnsureDeleted();
+      }
     }
   }
 }

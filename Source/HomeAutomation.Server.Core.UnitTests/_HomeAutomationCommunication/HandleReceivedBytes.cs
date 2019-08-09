@@ -7,7 +7,7 @@ using Xunit;
 
 namespace HomeAutomation.Server.Core.UnitTests._HomeAutomationCommunication
 {
-  public class HandleReceivedBytes
+  public class HandleReceivedBytes : DatabaseTestBase
   {
     private readonly Mock<IRequestParser> _requestParserMock;
     private readonly Mock<IResponseBuilder> _responseBuilderMock;
@@ -20,6 +20,7 @@ namespace HomeAutomation.Server.Core.UnitTests._HomeAutomationCommunication
       _responseBuilderMock = new Mock<IResponseBuilder>();
       _connectionHandlerMock = new Mock<IConnectionHandler>();
       _serviceLocatorMock = new Mock<IServiceLocator>();
+      _serviceLocatorMock.Setup(x => x.Locate(It.IsAny<Type>())).Returns<Type>(Activator.CreateInstance);
     }
 
     [Fact]

@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mvvm="clr-namespace:HomeAutomation.App.Mvvm;assembly=HomeAutomation.App"
@@ -6,12 +7,15 @@
              x:Class="HomeAutomation.App.Views.Rooms.RoomOverviewPage"
              mvvm:ViewModelLocator.ViewModelType="{x:Type rooms:RoomOverviewPageModel}">
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding Path=Rooms}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding Path=Description}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <StackLayout>
+            <ListView ItemsSource="{Binding Path=Rooms}" VerticalOptions="StartAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Path=Description}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="New room" Command="{Binding Path=NewRoomCommand}" VerticalOptions="End" />
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

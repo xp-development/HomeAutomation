@@ -21,16 +21,13 @@ namespace HomeAutomation.Server.Core.DataAccessLayer.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("CreatedDateTime")
-                        .ValueGeneratedOnAdd();
+                    b.Property<DateTime>("CreatedDateTime");
 
                     b.Property<string>("Description");
 
-                    b.Property<DateTime>("EditedDateTime")
-                        .ValueGeneratedOnAddOrUpdate();
+                    b.Property<DateTime>("EditedDateTime");
 
-                    b.Property<Guid>("Guid")
-                        .ValueGeneratedOnAdd();
+                    b.Property<Guid>("Guid");
 
                     b.HasKey("Id");
 

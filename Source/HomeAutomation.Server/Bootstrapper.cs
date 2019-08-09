@@ -52,6 +52,7 @@ namespace HomeAutomation.Server
     {
       using (var db = new ServerDatabaseContext())
       {
+//        db.Database.EnsureDeleted();
         db.Database.Migrate();
       }
     }

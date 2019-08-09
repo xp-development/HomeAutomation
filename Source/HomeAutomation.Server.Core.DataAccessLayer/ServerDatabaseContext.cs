@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace HomeAutomation.Server.Core.DataAccessLayer
 {
@@ -21,13 +23,28 @@ namespace HomeAutomation.Server.Core.DataAccessLayer
         optionsBuilder.UseSqlite(@"Data Source=Server.db");
     }
 
+    public override int SaveChanges()
+    {
+      ChangeTracker.Entries<EntityBase>().Where(x => x.State == EntityState.Added).ToList().ForEach(x =>
+      {
+        x.Entity.Guid = Guid.NewGuid();
+        x.Entity.CreatedDateTime = DateTime.Now;
+        x.Entity.EditedDateTime = DateTime.Now;
+      });
+
+      ChangeTracker.Entries<EntityBase>().Where(x => x.State == EntityState.Modified).ToList().ForEach(x =>
+      {
+        x.Entity.Guid = Guid.NewGuid();
+        x.Entity.EditedDateTime = DateTime.Now;
+      });
+
+      return base.SaveChanges();
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       modelBuilder.Entity<Room>().HasKey(p => p.Id);
       modelBuilder.Entity<Room>().Property(s => s.Id).ValueGeneratedOnAdd();
-      modelBuilder.Entity<Room>().Property(s => s.CreatedDateTime).ValueGeneratedOnAdd();
-      modelBuilder.Entity<Room>().Property(s => s.EditedDateTime).ValueGeneratedOnAddOrUpdate();
-      modelBuilder.Entity<Room>().Property(s => s.Guid).ValueGeneratedOnAdd();
     }
   }
 }
