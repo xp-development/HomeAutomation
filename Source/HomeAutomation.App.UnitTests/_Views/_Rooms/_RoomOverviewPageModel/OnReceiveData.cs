@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HomeAutomation.App.Communication;
+using HomeAutomation.App.Events;
 using HomeAutomation.App.Models;
 using HomeAutomation.App.Views.Rooms;
 using HomeAutomation.Protocols.App.v0.Requests;
@@ -17,7 +18,7 @@ namespace HomeAutomation.App.UnitTests._Views._Rooms._RoomOverviewPageModel
     {
       var communicatorMock = new Mock<ICommunicator>();
 
-      var viewModel = new RoomOverviewPageModel(communicatorMock.Object);
+      var viewModel = new RoomOverviewPageModel(communicatorMock.Object, new Mock<IEventAggregator>().Object);
       await viewModel.LoadedAsync(null);
 
       communicatorMock.Raise(x => x.ReceiveData += null, new GetAllRoomsDataResponse{ RoomIdentifiers = new[] {1, 2, 3} });
@@ -33,7 +34,7 @@ namespace HomeAutomation.App.UnitTests._Views._Rooms._RoomOverviewPageModel
     {
       var communicatorMock = new Mock<ICommunicator>();
 
-      var viewModel = new RoomOverviewPageModel(communicatorMock.Object);
+      var viewModel = new RoomOverviewPageModel(communicatorMock.Object, new Mock<IEventAggregator>().Object);
       await viewModel.LoadedAsync(null);
 
       communicatorMock.Raise(x => x.ReceiveData += null, new GetAllRoomsDataResponse { RoomIdentifiers = new[] {1, 2, 3} });
@@ -48,7 +49,7 @@ namespace HomeAutomation.App.UnitTests._Views._Rooms._RoomOverviewPageModel
     {
       var communicatorMock = new Mock<ICommunicator>();
 
-      var viewModel = new RoomOverviewPageModel(communicatorMock.Object);
+      var viewModel = new RoomOverviewPageModel(communicatorMock.Object, new Mock<IEventAggregator>().Object);
       await viewModel.LoadedAsync(null);
       viewModel.Rooms.Add(new RoomViewModel(1));
 
@@ -62,7 +63,7 @@ namespace HomeAutomation.App.UnitTests._Views._Rooms._RoomOverviewPageModel
     {
       var communicatorMock = new Mock<ICommunicator>();
 
-      var viewModel = new RoomOverviewPageModel(communicatorMock.Object);
+      var viewModel = new RoomOverviewPageModel(communicatorMock.Object, new Mock<IEventAggregator>().Object);
       await viewModel.LoadedAsync(null);
       await viewModel.NewRoomCommand.Execute(null);
 

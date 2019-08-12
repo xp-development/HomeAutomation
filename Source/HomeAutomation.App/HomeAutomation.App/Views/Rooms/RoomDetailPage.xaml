@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mvvm="clr-namespace:HomeAutomation.App.Mvvm;assembly=HomeAutomation.App"
+             xmlns:rooms="clr-namespace:HomeAutomation.App;assembly=HomeAutomation.App"
+             x:Class="HomeAutomation.App.Views.Rooms.RoomDetailPage"
+             mvvm:ViewModelLocator.ViewModelType="{x:Type rooms:RoomDetailPageModel}">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Room details"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

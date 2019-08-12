@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -12,8 +12,8 @@
   <ItemGroup>
     <PackageReference Include="Grace" Version="6.4.2" />
     <PackageReference Include="MetroLog" Version="1.0.1" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
-    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
+    <PackageReference Include="Xamarin.Forms" Version="4.1.0.673156" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +31,9 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Views\Home\HomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Rooms\RoomDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Rooms\RoomOverviewPage.xaml">

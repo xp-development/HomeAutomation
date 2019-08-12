@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using HomeAutomation.App.Communication;
+using HomeAutomation.App.Events;
 using HomeAutomation.App.Models;
 using HomeAutomation.App.Mvvm;
 using HomeAutomation.Protocols.App.v0.Requests.Rooms;
@@ -14,17 +15,28 @@ namespace HomeAutomation.App.Views.Rooms
   public class RoomOverviewPageModel : ViewModelBase
   {
     private readonly ICommunicator _communicator;
+    private readonly IEventAggregator _eventAggregator;
     private readonly Dictionary<byte, string> _newRooms = new Dictionary<byte, string>();
     private byte _clientRoomIdentifierForNewRooms;
 
-    public RoomOverviewPageModel(ICommunicator communicator)
+    public RoomOverviewPageModel(ICommunicator communicator, IEventAggregator eventAggregator)
     {
       _communicator = communicator;
+      _eventAggregator = eventAggregator;
       NewRoomCommand = new DelegateCommand<object, object>(OnNewRoom);
+      NavigateToRoomCommand = new DelegateCommand<object, object>(OnNavigateToRoom);
     }
 
     public ObservableCollection<RoomViewModel> Rooms { get; } = new ObservableCollection<RoomViewModel>();
+
     public DelegateCommand<object, object> NewRoomCommand { get; }
+
+    private Task OnNavigateToRoom(object arg)
+    {
+      return _eventAggregator.PublishAsync(new NavigationEvent(typeof(RoomDetailPage), arg));
+    }
+
+    public DelegateCommand<object, object> NavigateToRoomCommand { get; }
 
     private Task OnNewRoom(object arg)
     {
