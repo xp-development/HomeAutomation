@@ -10,3 +10,5 @@
 /Source/HomeAutomation.Server/bin
 /Source/HomeAutomation.App/HomeAutomation.App.UWP/bin/x86/Debug
 /.vs
+/Source/_NCrunch_HomeAutomation
+/Source/HomeAutomation.v3.ncrunchsolution.user
