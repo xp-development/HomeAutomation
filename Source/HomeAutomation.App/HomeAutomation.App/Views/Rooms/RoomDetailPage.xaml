@@ -10,6 +10,7 @@
             <Label Text="Description: "/>
             <Editor Text="{Binding Path=Room.Description}"/>
             <Button Text="Save" Command="{Binding Path=SaveRoomCommand}" VerticalOptions="End" />
+            <Button Text="Delete" Command="{Binding Path=DeleteRoomCommand}" VerticalOptions="End" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

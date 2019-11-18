@@ -9,10 +9,10 @@ using Xunit;
 
 namespace HomeAutomation.App.UnitTests._Views._Rooms._RoomDetailPageModel
 {
-  public class SaveRoomCommand
+  public class DeleteRoomCommand
   {
     [Fact]
-    public async void ShouldRenameRoom()
+    public async void ShouldDeleteRoom()
     {
       const int roomId = 5;
       var communicatorMock = new Mock<ICommunicator>();
@@ -20,13 +20,11 @@ namespace HomeAutomation.App.UnitTests._Views._Rooms._RoomDetailPageModel
       var viewModel = new RoomDetailPageModel(communicatorMock.Object, eventAggregatorMock.Object);
       await viewModel.LoadedAsync(roomId);
       communicatorMock.Raise(x => x.ReceiveData += null, new GetRoomDescriptionDataResponse{ RoomIdentifier = roomId, Description = "my room description" });
-      viewModel.Room.Description = "new room description";
 
-      await viewModel.SaveRoomCommand.Execute(null);
+      await viewModel.DeleteRoomCommand.Execute(null);
 
-      communicatorMock.Verify(x => x.SendAsync(It.Is<IRequest>(request => request is RenameRoomDescriptionDataRequest 
-                                                                          && ((RenameRoomDescriptionDataRequest)request).Identifier == roomId
-                                                                          && ((RenameRoomDescriptionDataRequest)request).Description == viewModel.Room.Description)));
+      communicatorMock.Verify(x => x.SendAsync(It.Is<IRequest>(request => request is DeleteRoomDataRequest 
+                                                                          && ((DeleteRoomDataRequest)request).RoomIdentifier == roomId)));
     }
   }
 }
