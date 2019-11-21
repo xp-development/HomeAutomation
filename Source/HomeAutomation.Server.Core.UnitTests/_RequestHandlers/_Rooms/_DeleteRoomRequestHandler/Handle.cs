@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System.Linq;
+using FluentAssertions;
 using HomeAutomation.Protocols.App.v0.Requests.Rooms;
 using HomeAutomation.Protocols.App.v0.Responses.Rooms;
 using HomeAutomation.Server.Core.DataAccessLayer;
@@ -10,7 +11,7 @@ namespace HomeAutomation.Server.Core.UnitTests._RequestHandlers._Rooms._DeleteRo
   public class Handle : DatabaseTestBase
   {
     [Fact]
-    public void ShouldDeleteRoomDForExistingEntry()
+    public void ShouldDeleteRoomForExistingEntry()
     {
       using (var context = new ServerDatabaseContext())
       {
@@ -26,6 +27,12 @@ namespace HomeAutomation.Server.Core.UnitTests._RequestHandlers._Rooms._DeleteRo
       response.RoomIdentifier.Should().Be(2);
       response.ResponseCode0.Should().Be(0);
       response.ResponseCode1.Should().Be(0);
+      using (var context = new ServerDatabaseContext())
+      {
+        var rooms = context.Rooms.ToList();
+        rooms.Should().HaveCount(2);
+        rooms.Find(x => x.Id == 2).Should().BeNull();
+      }
     }
 
     [Fact]
@@ -45,6 +52,11 @@ namespace HomeAutomation.Server.Core.UnitTests._RequestHandlers._Rooms._DeleteRo
       response.ResponseCode0.Should().Be(0x01);
       response.ResponseCode1.Should().Be(0x00);
       response.RoomIdentifier.Should().Be(0);
+      using (var context = new ServerDatabaseContext())
+      {
+        var rooms = context.Rooms.ToList();
+        rooms.Should().HaveCount(3);
+      }
     }
   }
 }

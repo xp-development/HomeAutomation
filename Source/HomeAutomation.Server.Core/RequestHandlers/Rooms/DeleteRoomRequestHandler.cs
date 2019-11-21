@@ -17,9 +17,12 @@ namespace HomeAutomation.Server.Core.RequestHandlers.Rooms
       using (var context = new ServerDatabaseContext())
       {
         var room = context.Rooms.Find(dataRequest.RoomIdentifier);
-        return room == null
-          ? new DeleteRoomDataResponse {RoomIdentifier = 0, ResponseCode0 = 0x01, ResponseCode1 = 0x00}
-          : new DeleteRoomDataResponse {RoomIdentifier = room.Id};
+        if (room == null)
+          return new DeleteRoomDataResponse {RoomIdentifier = 0, ResponseCode0 = 0x01, ResponseCode1 = 0x00};
+
+        context.Remove(room);
+        context.SaveChanges();
+        return new DeleteRoomDataResponse {RoomIdentifier = room.Id};
       }
     }
   }
