@@ -19,6 +19,12 @@
   - get description 02
   - rename room 03
   - delete room 04
+1. rooms 03
+  - create 00
+  - get all 01
+  - get description 02
+  - rename device 03
+  - delete device 04
 
 ### Common response codes:
 
