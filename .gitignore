@@ -12,3 +12,5 @@
 /.vs
 /Source/_NCrunch_HomeAutomation
 /Source/HomeAutomation.v3.ncrunchsolution.user
+/Source/HomeAutomation.App/HomeAutomation.App/HomeAutomation.App.csproj.user
+/Source/HomeAutomation.App.UnitTests/HomeAutomation.App.UnitTests.csproj.user

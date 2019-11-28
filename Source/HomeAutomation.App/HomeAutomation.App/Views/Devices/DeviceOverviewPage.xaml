@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mvvm="clr-namespace:HomeAutomation.App.Mvvm;assembly=HomeAutomation.App"
+             xmlns:devices="clr-namespace:HomeAutomation.App.Views.Devices;assembly=HomeAutomation.App"
+             mc:Ignorable="d"
+             x:Class="HomeAutomation.App.Views.Devices.DeviceOverviewPage"
+             mvvm:ViewModelLocator.ViewModelType="{x:Type devices:DeviceOverviewPageModel}"
+             x:Name="Page">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding Path=Objects}" VerticalOptions="StartAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Command="{Binding Source={x:Reference Page}, Path=BindingContext.NavigateToObjectCommand}" CommandParameter="{Binding Path=Id}" Text="{Binding Path=Description}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="New device" Command="{Binding Path=NewObjectCommand}" VerticalOptions="End" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using HomeAutomation.Protocols.App.v0;
+﻿using HomeAutomation.Protocols.App.v0;
 using HomeAutomation.Protocols.App.v0.Requests;
 using HomeAutomation.Protocols.App.v0.Requests.Rooms;
 using HomeAutomation.Protocols.App.v0.Responses;
@@ -22,7 +21,7 @@ namespace HomeAutomation.Server.Core.RequestHandlers.Rooms
         context.SaveChanges();
       }
 
-      return new CreateRoomDataResponse { RoomIdentifier = room.Id, ClientRoomIdentifier = dataRequest.ClientRoomIdentifier };
+      return new CreateRoomDataResponse { Identifier = room.Id, ClientObjectIdentifier = dataRequest.ClientObjectIdentifier };
     }
   }
 }

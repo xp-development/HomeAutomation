@@ -23,10 +23,10 @@ namespace HomeAutomation.Server.Core.UnitTests._RequestHandlers._Rooms._GetAllRo
 
       var response = (GetAllRoomsDataResponse) requestHandler.Handle(new GetAllRoomsDataRequest());
 
-      response.RoomIdentifiers.Should().HaveCount(3);
-      response.RoomIdentifiers[0].Should().Be(1);
-      response.RoomIdentifiers[1].Should().Be(2);
-      response.RoomIdentifiers[2].Should().Be(300);
+      response.Identifiers.Should().HaveCount(3);
+      response.Identifiers[0].Should().Be(1);
+      response.Identifiers[1].Should().Be(2);
+      response.Identifiers[2].Should().Be(300);
     }
   }
 }

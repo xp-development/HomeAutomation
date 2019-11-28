@@ -9,14 +9,14 @@
              x:Name="Page">
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemsSource="{Binding Path=Rooms}" VerticalOptions="StartAndExpand">
+            <ListView ItemsSource="{Binding Path=Objects}" VerticalOptions="StartAndExpand">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Command="{Binding Source={x:Reference Page}, Path=BindingContext.NavigateToRoomCommand}" CommandParameter="{Binding Path=Id}" Text="{Binding Path=Description}" />
+                        <TextCell Command="{Binding Source={x:Reference Page}, Path=BindingContext.NavigateToObjectCommand}" CommandParameter="{Binding Path=Id}" Text="{Binding Path=Description}" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Text="New room" Command="{Binding Path=NewRoomCommand}" VerticalOptions="End" />
+            <Button Text="New room" Command="{Binding Path=NewObjectCommand}" VerticalOptions="End" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -16,6 +16,24 @@ namespace HomeAutomation.Server.Core.DataAccessLayer.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
 
+            modelBuilder.Entity("HomeAutomation.Server.Core.DataAccessLayer.Device", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedDateTime");
+
+                    b.Property<string>("Description");
+
+                    b.Property<DateTime>("EditedDateTime");
+
+                    b.Property<Guid>("Guid");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Devices");
+                });
+
             modelBuilder.Entity("HomeAutomation.Server.Core.DataAccessLayer.Room", b =>
                 {
                     b.Property<int>("Id")

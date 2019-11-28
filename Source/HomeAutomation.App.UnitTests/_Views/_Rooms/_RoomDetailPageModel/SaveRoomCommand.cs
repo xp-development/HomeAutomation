@@ -19,7 +19,7 @@ namespace HomeAutomation.App.UnitTests._Views._Rooms._RoomDetailPageModel
       var eventAggregatorMock = new Mock<IEventAggregator>();
       var viewModel = new RoomDetailPageModel(communicatorMock.Object, eventAggregatorMock.Object);
       await viewModel.LoadedAsync(roomId);
-      communicatorMock.Raise(x => x.ReceiveData += null, new GetRoomDescriptionDataResponse{ RoomIdentifier = roomId, Description = "my room description" });
+      communicatorMock.Raise(x => x.ReceiveData += null, new GetRoomDescriptionDataResponse{ Identifier = roomId, Description = "my room description" });
       viewModel.Room.Description = "new room description";
 
       await viewModel.SaveRoomCommand.Execute(null);

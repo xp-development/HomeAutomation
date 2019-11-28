@@ -41,7 +41,7 @@ namespace HomeAutomation.Protocols.App.UnitTests._v0._ResponseBuilder
     {
       var builder = CreateResponseBuilder();
 
-      var bytes = builder.Build(new CreateRoomDataResponse { ConnectionIdentifier0 = 0x01, ClientRoomIdentifier = 0x05, RoomIdentifier = 0x0000AABB, Counter = 7 });
+      var bytes = builder.Build(new CreateRoomDataResponse { ConnectionIdentifier0 = 0x01, ClientObjectIdentifier = 0x05, Identifier = 0x0000AABB, Counter = 7 });
 
       bytes[0].Should().Be(0x00, "protocol version");
       bytes[1].Should().Be(0x02, "request type 0");
@@ -72,7 +72,7 @@ namespace HomeAutomation.Protocols.App.UnitTests._v0._ResponseBuilder
     {
       var builder = CreateResponseBuilder();
 
-      var bytes = builder.Build(new GetAllRoomsDataResponse { ConnectionIdentifier0 = 0x01, RoomIdentifiers = new[] { 0x00000001, 0x00554411, 0x0102030A }, Counter = 2});
+      var bytes = builder.Build(new GetAllRoomsDataResponse { ConnectionIdentifier0 = 0x01, Identifiers = new[] { 0x00000001, 0x00554411, 0x0102030A }, Counter = 2});
 
       bytes[0].Should().Be(0x00, "protocol version");
       bytes[1].Should().Be(0x02, "request type 0");

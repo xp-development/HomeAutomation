@@ -35,7 +35,7 @@ namespace HomeAutomation.Protocols.App.UnitTests._v0._RequestParser
       ((CreateRoomDataRequest) request).ConnectionIdentifier1.Should().Be(0xCC);
       ((CreateRoomDataRequest) request).ConnectionIdentifier2.Should().Be(0xCC);
       ((CreateRoomDataRequest) request).ConnectionIdentifier3.Should().Be(0xCC);
-      ((CreateRoomDataRequest) request).ClientRoomIdentifier.Should().Be(0xBB);
+      ((CreateRoomDataRequest) request).ClientObjectIdentifier.Should().Be(0xBB);
       ((CreateRoomDataRequest) request).Description.Should().Be("living room");
     }
 

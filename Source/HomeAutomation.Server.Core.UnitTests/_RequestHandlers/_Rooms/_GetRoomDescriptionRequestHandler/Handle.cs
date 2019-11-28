@@ -23,7 +23,7 @@ namespace HomeAutomation.Server.Core.UnitTests._RequestHandlers._Rooms._GetRoomD
 
       var response = (GetRoomDescriptionDataResponse) requestHandler.Handle(new GetRoomDescriptionDataRequest { Identifier = 2 });
 
-      response.RoomIdentifier.Should().Be(2);
+      response.Identifier.Should().Be(2);
       response.Description.Should().Be("Room 2");
     }
 
@@ -43,7 +43,7 @@ namespace HomeAutomation.Server.Core.UnitTests._RequestHandlers._Rooms._GetRoomD
 
       response.ResponseCode0.Should().Be(0x01);
       response.ResponseCode1.Should().Be(0x00);
-      response.RoomIdentifier.Should().Be(0);
+      response.Identifier.Should().Be(0);
       response.Description.Should().Be("");
     }
   }

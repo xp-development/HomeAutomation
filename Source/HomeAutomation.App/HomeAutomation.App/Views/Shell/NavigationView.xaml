@@ -4,6 +4,7 @@
              xmlns:home="clr-namespace:HomeAutomation.App.Views.Home;assembly=HomeAutomation.App"
              xmlns:rooms="clr-namespace:HomeAutomation.App.Views.Rooms;assembly=HomeAutomation.App"
              xmlns:settings="clr-namespace:HomeAutomation.App.Views.Settings;assembly=HomeAutomation.App"
+             xmlns:devices="clr-namespace:HomeAutomation.App.Views.Devices;assembly=HomeAutomation.App"
              x:Class="HomeAutomation.App.Views.Shell.NavigationView" Title="HomeAutomation.App">
     <ContentPage.Content>
         <StackLayout>
@@ -12,6 +13,7 @@
                     <x:Array Type="{x:Type shell:NavigationItem}">
                         <shell:NavigationItem Title="Home" TargetType="{x:Type home:HomePage}" />
                         <shell:NavigationItem Title="Rooms" TargetType="{x:Type rooms:RoomOverviewPage}" />
+                        <shell:NavigationItem Title="Devices" TargetType="{x:Type devices:DeviceOverviewPage}" />
                         <shell:NavigationItem Title="Settings" TargetType="{x:Type settings:SettingsPage}" />
                     </x:Array>
                 </ListView.ItemsSource>

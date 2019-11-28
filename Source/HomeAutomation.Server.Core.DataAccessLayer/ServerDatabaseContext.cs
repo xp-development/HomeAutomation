@@ -13,6 +13,7 @@ namespace HomeAutomation.Server.Core.DataAccessLayer
     {
     }
 
+    public DbSet<Device> Devices { get; set; }
     public DbSet<Room> Rooms { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -43,8 +44,20 @@ namespace HomeAutomation.Server.Core.DataAccessLayer
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+      RoomModelCreating(modelBuilder);
+      DeviceModelCreating(modelBuilder);
+    }
+
+    private static void RoomModelCreating(ModelBuilder modelBuilder)
+    {
       modelBuilder.Entity<Room>().HasKey(p => p.Id);
       modelBuilder.Entity<Room>().Property(s => s.Id).ValueGeneratedOnAdd();
+    }
+
+    private static void DeviceModelCreating(ModelBuilder modelBuilder)
+    {
+      modelBuilder.Entity<Device>().HasKey(p => p.Id);
+      modelBuilder.Entity<Device>().Property(s => s.Id).ValueGeneratedOnAdd();
     }
   }
 }

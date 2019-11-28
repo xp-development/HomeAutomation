@@ -42,11 +42,11 @@ namespace HomeAutomation.Protocols.App.UnitTests._v0._ResponseParser
       ((GetAllRoomsDataResponse)response).ConnectionIdentifier1.Should().Be(0xBC);
       ((GetAllRoomsDataResponse)response).ConnectionIdentifier2.Should().Be(0xCC);
       ((GetAllRoomsDataResponse)response).ConnectionIdentifier3.Should().Be(0xDC);
-      ((GetAllRoomsDataResponse)response).RoomIdentifiers.Length.Should().Be(0x04);
-      ((GetAllRoomsDataResponse)response).RoomIdentifiers[0].Should().Be(-573785174);
-      ((GetAllRoomsDataResponse)response).RoomIdentifiers[1].Should().Be(857866257);
-      ((GetAllRoomsDataResponse)response).RoomIdentifiers[2].Should().Be(2003195204);
-      ((GetAllRoomsDataResponse)response).RoomIdentifiers[3].Should().Be(1719109785);
+      ((GetAllRoomsDataResponse)response).Identifiers.Length.Should().Be(0x04);
+      ((GetAllRoomsDataResponse)response).Identifiers[0].Should().Be(-573785174);
+      ((GetAllRoomsDataResponse)response).Identifiers[1].Should().Be(857866257);
+      ((GetAllRoomsDataResponse)response).Identifiers[2].Should().Be(2003195204);
+      ((GetAllRoomsDataResponse)response).Identifiers[3].Should().Be(1719109785);
     }
 
     [Fact]

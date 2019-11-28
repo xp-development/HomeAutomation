@@ -21,12 +21,12 @@ namespace HomeAutomation.App.UnitTests._Views._Rooms._RoomOverviewPageModel
       var viewModel = new RoomOverviewPageModel(communicatorMock.Object, new Mock<IEventAggregator>().Object);
       await viewModel.LoadedAsync(null);
 
-      communicatorMock.Raise(x => x.ReceiveData += null, new GetAllRoomsDataResponse{ RoomIdentifiers = new[] {1, 2, 3} });
+      communicatorMock.Raise(x => x.ReceiveData += null, new GetAllRoomsDataResponse{ Identifiers = new[] {1, 2, 3} });
 
-      viewModel.Rooms.Count.Should().Be(3);
-      viewModel.Rooms[0].Id.Should().Be(1);
-      viewModel.Rooms[1].Id.Should().Be(2);
-      viewModel.Rooms[2].Id.Should().Be(3);
+      viewModel.Objects.Count.Should().Be(3);
+      viewModel.Objects[0].Id.Should().Be(1);
+      viewModel.Objects[1].Id.Should().Be(2);
+      viewModel.Objects[2].Id.Should().Be(3);
     }
 
     [Fact]
@@ -37,7 +37,7 @@ namespace HomeAutomation.App.UnitTests._Views._Rooms._RoomOverviewPageModel
       var viewModel = new RoomOverviewPageModel(communicatorMock.Object, new Mock<IEventAggregator>().Object);
       await viewModel.LoadedAsync(null);
 
-      communicatorMock.Raise(x => x.ReceiveData += null, new GetAllRoomsDataResponse { RoomIdentifiers = new[] {1, 2, 3} });
+      communicatorMock.Raise(x => x.ReceiveData += null, new GetAllRoomsDataResponse { Identifiers = new[] {1, 2, 3} });
 
       communicatorMock.Verify(x => x.SendAsync(It.Is<IRequest>(y => y is GetRoomDescriptionDataRequest && ((GetRoomDescriptionDataRequest)y).Identifier == 1)));
       communicatorMock.Verify(x => x.SendAsync(It.Is<IRequest>(y => y is GetRoomDescriptionDataRequest && ((GetRoomDescriptionDataRequest)y).Identifier == 2)));
@@ -51,11 +51,11 @@ namespace HomeAutomation.App.UnitTests._Views._Rooms._RoomOverviewPageModel
 
       var viewModel = new RoomOverviewPageModel(communicatorMock.Object, new Mock<IEventAggregator>().Object);
       await viewModel.LoadedAsync(null);
-      viewModel.Rooms.Add(new RoomViewModel(1));
+      viewModel.Objects.Add(new RoomViewModel {Id = 1});
 
-      communicatorMock.Raise(x => x.ReceiveData += null, new GetRoomDescriptionDataResponse { RoomIdentifier = 1, Description = "living room" });
+      communicatorMock.Raise(x => x.ReceiveData += null, new GetRoomDescriptionDataResponse { Identifier = 1, Description = "living room" });
 
-      viewModel.Rooms[0].Description.Should().Be("living room");
+      viewModel.Objects[0].Description.Should().Be("living room");
     }
 
     [Fact]
@@ -65,13 +65,13 @@ namespace HomeAutomation.App.UnitTests._Views._Rooms._RoomOverviewPageModel
 
       var viewModel = new RoomOverviewPageModel(communicatorMock.Object, new Mock<IEventAggregator>().Object);
       await viewModel.LoadedAsync(null);
-      await viewModel.NewRoomCommand.Execute(null);
+      await viewModel.NewObjectCommand.Execute(null);
 
-      communicatorMock.Raise(x => x.ReceiveData += null, new CreateRoomDataResponse { RoomIdentifier = 3, ClientRoomIdentifier = 0x01 });
+      communicatorMock.Raise(x => x.ReceiveData += null, new CreateRoomDataResponse { Identifier = 3, ClientObjectIdentifier = 0x01 });
 
-      viewModel.Rooms.Should().HaveCount(1);
-      viewModel.Rooms[0].Id.Should().Be(3);
-      viewModel.Rooms[0].Description.Should().Be("New room");
+      viewModel.Objects.Should().HaveCount(1);
+      viewModel.Objects[0].Id.Should().Be(3);
+      viewModel.Objects[0].Description.Should().Be("New room");
     }
   }
 }

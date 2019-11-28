@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace HomeAutomation.Server.Core.DataAccessLayer
+﻿namespace HomeAutomation.Server.Core.DataAccessLayer
 {
   public class Room : EntityBase
   {

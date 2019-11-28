@@ -15,10 +15,10 @@ namespace HomeAutomation.Server.Core.UnitTests._RequestHandlers._Rooms._CreateRo
     {
       var requestHandler = new CreateRoomRequestHandler();
 
-      var response = (CreateRoomDataResponse) requestHandler.Handle(new CreateRoomDataRequest { ClientRoomIdentifier = 0x54, Description = "New room description" });
+      var response = (CreateRoomDataResponse) requestHandler.Handle(new CreateRoomDataRequest { ClientObjectIdentifier = 0x54, Description = "New room description" });
 
-      response.ClientRoomIdentifier.Should().Be(0x54);
-      response.RoomIdentifier.Should().Be(0x01);
+      response.ClientObjectIdentifier.Should().Be(0x54);
+      response.Identifier.Should().Be(0x01);
       using (var context = new ServerDatabaseContext())
       {
         var rooms = context.Rooms.ToList();

@@ -14,7 +14,7 @@ namespace HomeAutomation.Server.Core.RequestHandlers.Rooms
     {
       using (var context = new ServerDatabaseContext())
       {
-        return new GetAllRoomsDataResponse { RoomIdentifiers = context.Rooms.Select(x => x.Id).ToArray() };
+        return new GetAllRoomsDataResponse { Identifiers = context.Rooms.Select(x => x.Id).ToArray() };
       }
     }
   }

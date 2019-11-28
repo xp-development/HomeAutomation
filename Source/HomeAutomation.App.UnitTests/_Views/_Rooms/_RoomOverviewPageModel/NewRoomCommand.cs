@@ -15,9 +15,9 @@ namespace HomeAutomation.App.UnitTests._Views._Rooms._RoomOverviewPageModel
       var communicatorMock = new Mock<ICommunicator>();
       var viewModel = new RoomOverviewPageModel(communicatorMock.Object, new Mock<IEventAggregator>().Object);
 
-      viewModel.NewRoomCommand.Execute(null);
+      viewModel.NewObjectCommand.Execute(null);
 
-      communicatorMock.Verify(x => x.SendAsync(It.Is<CreateRoomDataRequest>(y => y.ClientRoomIdentifier == 0x01 && y.Description == "New room")));
+      communicatorMock.Verify(x => x.SendAsync(It.Is<CreateRoomDataRequest>(y => y.ClientObjectIdentifier == 0x01 && y.Description == "New room")));
     }
   }
 }

@@ -61,7 +61,7 @@ namespace HomeAutomation.App.Views.Rooms
     private void OnReceiveData(IResponse response)
     {
       if (response is GetRoomDescriptionDataResponse getRoomDescriptionDataResponse)
-        Room = new RoomViewModel(getRoomDescriptionDataResponse.RoomIdentifier) { Description = getRoomDescriptionDataResponse.Description };
+        Room = new RoomViewModel { Id = getRoomDescriptionDataResponse.Identifier, Description = getRoomDescriptionDataResponse.Description };
       else if (response is DeleteRoomDataResponse deleteRoomDataResponse && deleteRoomDataResponse.RoomIdentifier == Room?.Id)
         _eventAggregator.PublishAsync(new NavigationEvent(typeof(RoomOverviewPage)));
     }

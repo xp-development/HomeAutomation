@@ -18,8 +18,8 @@ namespace HomeAutomation.Server.Core.RequestHandlers.Rooms
       {
         var room = context.Rooms.Find(dataRequest.Identifier);
         return room == null
-          ? new GetRoomDescriptionDataResponse {Description = "", RoomIdentifier = 0, ResponseCode0 = 0x01, ResponseCode1 = 0x00}
-          : new GetRoomDescriptionDataResponse {Description = room.Description, RoomIdentifier = room.Id};
+          ? new GetRoomDescriptionDataResponse {Description = "", Identifier = 0, ResponseCode0 = 0x01, ResponseCode1 = 0x00}
+          : new GetRoomDescriptionDataResponse {Description = room.Description, Identifier = room.Id};
       }
     }
   }
