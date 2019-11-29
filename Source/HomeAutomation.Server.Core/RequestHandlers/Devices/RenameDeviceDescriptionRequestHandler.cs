@@ -7,7 +7,7 @@ using HomeAutomation.Server.Core.DataAccessLayer;
 
 namespace HomeAutomation.Server.Core.RequestHandlers.Devices
 {
-  [RequestType(4, 3, 0, 0)]
+  [RequestType(3, 3, 0, 0)]
   public class RenameDeviceDescriptionRequestHandler : IRequestHandler
   {
     public IResponse Handle(IRequest request)

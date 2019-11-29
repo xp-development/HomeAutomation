@@ -59,7 +59,7 @@ namespace HomeAutomation.Protocols.App.UnitTests._v0._RequestBuilder
     {
       var builder = CreateRequestBuilder();
 
-      var bytes = builder.Build(new DeleteRoomDataRequest { RoomIdentifier = 287454020, ConnectionIdentifier0 = 0xAA, ConnectionIdentifier1 = 0xBB, ConnectionIdentifier2 = 0xCC, ConnectionIdentifier3 = 0xDD, Counter = 3 });
+      var bytes = builder.Build(new DeleteRoomDataRequest { Identifier = 287454020, ConnectionIdentifier0 = 0xAA, ConnectionIdentifier1 = 0xBB, ConnectionIdentifier2 = 0xCC, ConnectionIdentifier3 = 0xDD, Counter = 3 });
 
       bytes[0].Should().Be(0x00, "protocol version");
       bytes[1].Should().Be(0x02, "request type 0");

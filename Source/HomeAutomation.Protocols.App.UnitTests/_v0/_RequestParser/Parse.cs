@@ -52,7 +52,7 @@ namespace HomeAutomation.Protocols.App.UnitTests._v0._RequestParser
       ((DeleteRoomDataRequest) request).ConnectionIdentifier1.Should().Be(0xCC);
       ((DeleteRoomDataRequest) request).ConnectionIdentifier2.Should().Be(0xCC);
       ((DeleteRoomDataRequest) request).ConnectionIdentifier3.Should().Be(0xCC);
-      ((DeleteRoomDataRequest) request).RoomIdentifier.Should().Be(0x00000142);
+      ((DeleteRoomDataRequest) request).Identifier.Should().Be(0x00000142);
     }
 
     [Theory]

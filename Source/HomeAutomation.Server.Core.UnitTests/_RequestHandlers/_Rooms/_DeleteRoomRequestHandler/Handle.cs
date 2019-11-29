@@ -22,7 +22,7 @@ namespace HomeAutomation.Server.Core.UnitTests._RequestHandlers._Rooms._DeleteRo
       }
       var requestHandler = new DeleteRoomRequestHandler();
 
-      var response = (DeleteRoomDataResponse) requestHandler.Handle(new DeleteRoomDataRequest { RoomIdentifier = 2 });
+      var response = (DeleteRoomDataResponse) requestHandler.Handle(new DeleteRoomDataRequest { Identifier = 2 });
 
       response.RoomIdentifier.Should().Be(2);
       response.ResponseCode0.Should().Be(0);
@@ -47,7 +47,7 @@ namespace HomeAutomation.Server.Core.UnitTests._RequestHandlers._Rooms._DeleteRo
       }
       var requestHandler = new DeleteRoomRequestHandler();
 
-      var response = (DeleteRoomDataResponse) requestHandler.Handle(new DeleteRoomDataRequest { RoomIdentifier = 99 });
+      var response = (DeleteRoomDataResponse) requestHandler.Handle(new DeleteRoomDataRequest { Identifier = 99 });
 
       response.ResponseCode0.Should().Be(0x01);
       response.ResponseCode1.Should().Be(0x00);

@@ -1,15 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="HomeAutomation.App.Views.Devices.DeviceDetailPage">
+             xmlns:mvvm="clr-namespace:HomeAutomation.App.Mvvm;assembly=HomeAutomation.App"
+             xmlns:devices="clr-namespace:HomeAutomation.App.Views.Devices;assembly=HomeAutomation.App"
+             x:Class="HomeAutomation.App.Views.Devices.DeviceDetailPage"
+             mvvm:ViewModelLocator.ViewModelType="{x:Type devices:DeviceDetailPageModel}">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="A device."
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Description: "/>
+            <Entry Text="{Binding Path=Device.Description}" />
+            <Button Text="Save" Command="{Binding Path=SaveDeviceCommand}" VerticalOptions="End" />
+            <Button Text="Delete" Command="{Binding Path=DeleteDeviceCommand}" VerticalOptions="End" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

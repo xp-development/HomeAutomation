@@ -24,7 +24,7 @@ namespace HomeAutomation.App.UnitTests._Views._Rooms._RoomDetailPageModel
       await viewModel.DeleteRoomCommand.Execute(null);
 
       communicatorMock.Verify(x => x.SendAsync(It.Is<IRequest>(request => request is DeleteRoomDataRequest 
-                                                                          && ((DeleteRoomDataRequest)request).RoomIdentifier == roomId)));
+                                                                          && ((DeleteRoomDataRequest)request).Identifier == roomId)));
     }
   }
 }

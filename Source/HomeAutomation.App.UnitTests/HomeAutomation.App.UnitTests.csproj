@@ -92,6 +92,10 @@
     <Compile Include="_Views\_Devices\_DeviceOverviewPageModel\NavigateToDeviceCommand.cs" />
     <Compile Include="_Views\_Devices\_DeviceOverviewPageModel\NewDeviceCommand.cs" />
     <Compile Include="_Views\_Devices\_DeviceOverviewPageModel\OnReceiveData.cs" />
+    <Compile Include="_Views\_Devices\_DeviceDetailPageModel\DeleteDeviceCommand.cs" />
+    <Compile Include="_Views\_Devices\_DeviceDetailPageModel\LoadDataAsync.cs" />
+    <Compile Include="_Views\_Devices\_DeviceDetailPageModel\OnReceiveData.cs" />
+    <Compile Include="_Views\_Devices\_DeviceDetailPageModel\SaveRoomCommand.cs" />
     <Compile Include="_Views\_Rooms\_RoomDetailPageModel\DeleteRoomCommand.cs" />
     <Compile Include="_Views\_Rooms\_RoomDetailPageModel\LoadDataAsync.cs" />
     <Compile Include="_Views\_Rooms\_RoomDetailPageModel\OnReceiveData.cs" />

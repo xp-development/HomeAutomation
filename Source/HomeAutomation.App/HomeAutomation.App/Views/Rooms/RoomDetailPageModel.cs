@@ -43,7 +43,7 @@ namespace HomeAutomation.App.Views.Rooms
 
     private Task OnDeleteRoom(object arg)
     {
-      return _communicator.SendAsync(new DeleteRoomDataRequest {RoomIdentifier = Room.Id});
+      return _communicator.SendAsync(new DeleteRoomDataRequest {Identifier = Room.Id});
     }
 
     protected override Task OnLoadedAsync(object parameter)
